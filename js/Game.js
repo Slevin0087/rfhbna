@@ -22,11 +22,13 @@ export class Game {
     this.stockDivEl = document.getElementById("stockDiv");
     this.foundationsDiv = document.getElementById("foundationsDiv");
     this.tableausEl = document.getElementById("tableausDiv");
+    this.pointsElement = document.getElementById("points-in-game");
     this.selectedCard = null;
     this.selectedCardElement = null;
     this.hintTimeout = null;
     this.eventClientX = null;
     this.eventClientY = null;
+    this.poinsGame = 0;
     this.foundationElement = document.elementFromPoint(
       this.eventClientX,
       this.eventClientY
@@ -77,14 +79,12 @@ export class Game {
 
     // Оставшиеся карты идут в сток
     const stockCards = [];
-    while (!this.deck.isEmpty()) {
-      console.log('while (!this.deck.isEmpty())');
-      
+    while (!this.deck.isEmpty()) {      
       stockCards.push(this.deck.deal());
     }
     
     this.stock.addCards(stockCards);
-    console.log('this.stock:', this.stock);
+    this.pointsElement.textContent =`Заработано Очков: ${this.poinsGame}`;
   }
 
   renderGame() {
@@ -109,7 +109,7 @@ export class Game {
   }
 
   renderCards() {
-    console.log("renders");
+    // console.log("renders");
 
     // Очищаем старые карты
     document.querySelectorAll(".card").forEach((el) => el.remove());
@@ -134,13 +134,13 @@ export class Game {
     if (wasteCard) {
       
       wasteCard.wasteCard = true;
-      console.log('wasteCard:', wasteCard);
+      // console.log('wasteCard:', wasteCard);
       this.renderCard(wasteCard, "waste", 0);
     }
   }
 
   renderCard(card, containerId, offset) {
-    console.log("render");
+    // console.log("render");
     const container = document.getElementById(containerId);
 
     // console.log('container.getBoundingClientRect():', container.getBoundingClientRect().left);
@@ -168,15 +168,18 @@ export class Game {
     // card.getSymbol();
     const cStyle = window.getComputedStyle(container);
     const cStyleBorderRadius = parseInt(cStyle.borderRadius);
-    console.log('cStyleBorderRadius:', cStyleBorderRadius);
+    // console.log('cStyleBorderRadius:', cStyleBorderRadius);
 
     // console.log('cardElement.style.left:', typeof cardElement.style.left);
     cardElement.style.position = "absolute";
     cardElement.style.left = -cStyleBorderRadius / 2 + "px";
 
     if (containerId.startsWith("tableau-")) {
-      // console.log('if:');
-      cardElement.style.top = offset * 25 - cStyleBorderRadius / 2 + "px";
+      const wH = document.documentElement.clientHeight;
+
+      console.log('wH:', wH);
+      const topPx = wH < 500 ? 12 : 25
+      cardElement.style.top = offset * topPx - cStyleBorderRadius / 2 + "px";
     } else {
       cardElement.style.top = -cStyleBorderRadius / 2 + "px";
     }
@@ -243,13 +246,17 @@ export class Game {
 
   handleCardClick(card) {
     this.audio.play('click');
+    console.log('card:', card);
+    
     // 1. Проверяем Foundation
     for (let i = 0; i < this.foundations.length; i++) {
-      if (this.foundations[i].canAccept(card)) {
+      if (this.foundations[i].canAccept(card) && !card.foundation) {
         this.moveCardToFoundation(card, i);
         if (this.checkWin()) {
           this.audio.play('win');
           this.messageEl.textContent = "Поздравляем! Вы выиграли!";
+          this.poinsGame += 50;
+          this.pointsElement.textContent =`Заработано Очков: ${this.poinsGame}`;
         }
         return;
       }
@@ -265,7 +272,9 @@ export class Game {
   
     // 3. Если никуда нельзя
     const originalText = this.messageEl.textContent;
-    this.messageEl.textContent = "Нельзя переместить карту";
+    // this.messageEl.textContent = "Нельзя переместить карту";
+    this.messageEl.textContent = "Йгьауашым!";
+    this.audio.play('info');
     setTimeout(() => this.messageEl.textContent = originalText, 1500);
   }
 
@@ -283,137 +292,174 @@ export class Game {
     this.selectedCard = null;
   }
 
-  tryMoveCard(fromCard, toCard) {
-    // 1. Попытка переместить в foundation
-    if (this.tryMoveToFoundation(fromCard, toCard)) {
-      this.messageEl.textContent = "";
-      if (this.checkWin()) {
-        this.messageEl.textContent = "Поздравляем! Вы выиграли!";
-      }
-      return true;
-    }
+  // tryMoveCard(fromCard, toCard) {
+  //   // 1. Попытка переместить в foundation
+  //   if (this.tryMoveToFoundation(fromCard, toCard)) {
+  //     this.messageEl.textContent = "";
+  //     if (this.checkWin()) {
+  //       this.messageEl.textContent = "Поздравляем! Вы выиграли!";
+  //     }
+  //     return true;
+  //   }
 
-    // 2. Попытка переместить в tableau
-    if (this.tryMoveToTableau(fromCard, toCard)) {
-      this.messageEl.textContent = "";
-      return true;
-    }
+  //   // 2. Попытка переместить в tableau
+  //   if (this.tryMoveToTableau(fromCard, toCard)) {
+  //     this.messageEl.textContent = "";
+  //     return true;
+  //   }
 
-    this.messageEl.textContent = "Невозможно переместить карту";
-    return false;
-  }
+  //   this.messageEl.textContent = "Невозможно переместить карту";
+  //   return false;
+  // }
 
-  tryMoveToFoundation(fromCard, toCard) {
-    // console.log("if tryMoveToFoundation this.foundations:", this.foundations);
-    // console.log("fromCard:", fromCard);
-    // console.log("toCard:", toCard);
-    // Определяем foundation по карте или позиции курсора
-    let foundationIndex;
+  // tryMoveToFoundation(fromCard, toCard) {
+  //   // console.log("if tryMoveToFoundation this.foundations:", this.foundations);
+  //   // console.log("fromCard:", fromCard);
+  //   // console.log("toCard:", toCard);
+  //   // Определяем foundation по карте или позиции курсора
+  //   let foundationIndex;
 
-    if (toCard && toCard.foundation) {
-      foundationIndex = this.foundations.findIndex((f) => {
-        // console.log('f.cards:', f.cards);
+  //   if (toCard && toCard.foundation) {
+  //     foundationIndex = this.foundations.findIndex((f) => {
+  //       // console.log('f.cards:', f.cards);
 
-        f.cards.includes(toCard);
-      });
-      // console.log("if tryMoveToFoundation foundationIndex:", foundationIndex);
-    } else {
-      // console.log("else :")
-      // );
-      // const foundationElement = document.elementFromPoint(
-      //   this.eventClientX,
-      //   this.eventClientY
-      // );
-      // console.log(
-      //   "else tryMoveToFoundation this.foundationElement:",
-      //   this.foundationElement
-      // );
-      if (this.foundationElement && this.foundationElement.id.startsWith("foundation-")) {
-        foundationIndex = parseInt(this.foundationElement.id.split("-")[1]);
-      } else {
-        return false;
-      }
-    }
+  //       f.cards.includes(toCard);
+  //     });
+  //     // console.log("if tryMoveToFoundation foundationIndex:", foundationIndex);
+  //   } else {
+  //     // console.log("else :")
+  //     // );
+  //     // const foundationElement = document.elementFromPoint(
+  //     //   this.eventClientX,
+  //     //   this.eventClientY
+  //     // );
+  //     // console.log(
+  //     //   "else tryMoveToFoundation this.foundationElement:",
+  //     //   this.foundationElement
+  //     // );
+  //     if (this.foundationElement && this.foundationElement.id.startsWith("foundation-")) {
+  //       foundationIndex = parseInt(this.foundationElement.id.split("-")[1]);
+  //     } else {
+  //       return false;
+  //     }
+  //   }
 
-    // Проверяем возможность перемещения
-    if (
-      foundationIndex !== -1 &&
-      this.foundations[foundationIndex].canAccept(fromCard)
-    ) {
-      // Удаляем карту из текущего положения
-      this.removeCardFromCurrentPosition(fromCard);
+  //   // Проверяем возможность перемещения
+  //   if (
+  //     foundationIndex !== -1 &&
+  //     this.foundations[foundationIndex].canAccept(fromCard)
+  //   ) {
+  //     // Удаляем карту из текущего положения
+  //     this.removeCardFromCurrentPosition(fromCard);
 
-      // Добавляем в foundation
-      this.foundations[foundationIndex].addCard(fromCard);
+  //     // Добавляем в foundation
+  //     this.foundations[foundationIndex].addCard(fromCard);
 
-      // Обновляем отображение
-      this.renderCards();
-      return true;
-    }
+  //     // Обновляем отображение
+  //     this.renderCards();
+  //     return true;
+  //   }
 
-    return false;
-  }
+  //   return false;
+  // }
 
-  tryMoveToTableau(fromCard, toCard) {
-    // Определяем столбец tableau по карте или позиции курсора
-    let columnIndex;
+  // tryMoveToTableau(fromCard, toCard) {
+  //   // Определяем столбец tableau по карте или позиции курсора
+  //   let columnIndex;
 
-    if (toCard && !toCard.foundation) {
-      // console.log("if tryMoveToTableau");
-      columnIndex = toCard.column;
-    } else {
-      const tableauElement = document.elementFromPoint(
-        parseInt(this.selectedCardElement.style.left) + 35,
-        parseInt(this.selectedCardElement.style.top) + 50
-      );
+  //   if (toCard && !toCard.foundation) {
+  //     // console.log("if tryMoveToTableau");
+  //     columnIndex = toCard.column;
+  //   } else {
+  //     const tableauElement = document.elementFromPoint(
+  //       parseInt(this.selectedCardElement.style.left) + 35,
+  //       parseInt(this.selectedCardElement.style.top) + 50
+  //     );
 
-      if (tableauElement && tableauElement.id.startsWith("tableau-")) {
-        columnIndex = parseInt(tableauElement.id.split("-")[1]);
-      } else {
-        return false;
-      }
-    }
+  //     if (tableauElement && tableauElement.id.startsWith("tableau-")) {
+  //       columnIndex = parseInt(tableauElement.id.split("-")[1]);
+  //     } else {
+  //       return false;
+  //     }
+  //   }
 
-    // Проверяем возможность перемещения
-    if (
-      columnIndex !== undefined &&
-      this.tableaus[columnIndex].canAccept(fromCard)
-    ) {
-      // Удаляем карту из текущего положения
-      this.removeCardFromCurrentPosition(fromCard);
+  //   // Проверяем возможность перемещения
+  //   if (
+  //     columnIndex !== undefined &&
+  //     this.tableaus[columnIndex].canAccept(fromCard)
+  //   ) {
+  //     // Удаляем карту из текущего положения
+  //     this.removeCardFromCurrentPosition(fromCard);
 
-      // Добавляем в tableau
-      this.tableaus[columnIndex].addCard(fromCard);
+  //     // Добавляем в tableau
+  //     this.tableaus[columnIndex].addCard(fromCard);
 
-      // Обновляем отображение
-      this.renderCards();
-      return true;
-    }
+  //     // Обновляем отображение
+  //     this.renderCards();
+  //     return true;
+  //   }
 
-    return false;
-  }
+  //   return false;
+  // }
 
   moveCardToFoundation(card, foundationIndex) {
-    this.removeCardFromCurrentPosition(card);
+    this.removeCardFromCurrentPosition(card, foundationIndex, 'foundation');
     this.foundations[foundationIndex].addCard(card);
-    this.foundations[foundationIndex].element.appendChild(card.cardEl)
+    this.foundations[foundationIndex].element.appendChild(card.cardEl);
+    console.log('this.foundations:', this.foundations);
+    this.poinsGame += 2;
+    this.pointsElement.textContent =`Заработано Очков: ${this.poinsGame}`;
     this.renderCards();
   }
   
   moveCardToTableau(card, tableauIndex) {
-    this.removeCardFromCurrentPosition(card);
-    this.tableaus[tableauIndex].addCard(card);
-    this.tableaus[tableauIndex].element.appendChild(card.cardEl);
+    this.removeCardFromCurrentPosition(card, tableauIndex, 'tableau');
+    // this.tableaus[tableauIndex].addCard(card);
+    // this.tableaus[tableauIndex].element.appendChild(card.cardEl);
+    console.log('this.tableaus:', this.tableaus);
+    
+    this.poinsGame += 2;
+    this.pointsElement.textContent =`Заработано Очков: ${this.poinsGame}`;
     this.renderCards();
   }
 
-  removeCardFromCurrentPosition(card) {
+  removeCardFromCurrentPosition(card, containerIndex, nameContainer) {
+    console.log('перекладывание card:', card);
+    
     // Ищем карту в tableau
-    for (let tableau of this.tableaus) {
-      const index = tableau.cards.indexOf(card);
+    // for (let tableau of this.tableaus) {
+    //   const index = tableau.cards.indexOf(card);
+    //   if (index !== -1) {
+    //     tableau.removeCard(card);
+    //     card.parentElement.removeChild(card.cardEl)
+    //     return;
+    //   }
+    // }
+    for (let i = 0; i < this.tableaus.length; i++) {      
+      const index = this.tableaus[i].cards.indexOf(card);
+      console.log('this.tableaus:', this.tableaus);
+      
       if (index !== -1) {
-        tableau.removeCard(card);
-        card.parentElement.removeChild(card.cardEl)
+        // Удаляем карту и все карты выше неё (если это стопка)
+        const removedCards = this.tableaus[i].cards.splice(index);
+        console.log('removedCards:', removedCards);
+        if (removedCards.length === 1) {
+          console.log('одна карта');
+          this.tableaus[i].removeCard(card);
+          this.tableaus[containerIndex].addCard(card);
+          this.tableaus[containerIndex].element.appendChild(card.cardEl);
+          console.log('после IF this.tableaus:', this.tableaus);
+        } else if (removedCards.length > 1) {
+          console.log('больше одной карты');
+          removedCards.forEach((card) => {
+            this.tableaus[i].removeCard(card)
+            this.tableaus[containerIndex].addCard(card);
+            this.tableaus[containerIndex].element.appendChild(card.cardEl);
+          });
+          console.log('после ELSE this.tableaus:', this.tableaus);
+          // Если перемещали стопку, нужно обновить позиции оставшихся карт
+          this.tableaus[i].updateCardPositions();
+        }
         return;
       }
     }
@@ -421,7 +467,16 @@ export class Game {
     // Ищем карту в waste (стоке)
     const wasteCard = this.stock.getCurrentCard();
     if (wasteCard === card) {
+      card.wasteCard = false;
+      console.log('card.wasteCard:', card.wasteCard);
       this.stock.removeCurrentCard(card);
+      if (nameContainer === 'tableau') {
+        this.tableaus[containerIndex].addCard(card);
+        this.tableaus[containerIndex].element.appendChild(card.cardEl);
+      } else if (nameContainer === 'foundation') {
+        this.foundations[containerIndex].addCard(card);
+        this.foundations[containerIndex].element.appendChild(card.cardEl);
+      }
       return;
     }
 
@@ -430,6 +485,9 @@ export class Game {
       const index = foundation.cards.indexOf(card);
       if (index !== -1) {
         foundation.cards.splice(index, 1);
+        card.foundation = false;
+        console.log('card.foundation:', card.foundation);
+        
         card.parentElement.removeChild(card.cardEl);
         return;
       }
@@ -597,45 +655,47 @@ export class Game {
     this.stock.element.addEventListener("click", () => {
       this.audio.play('cardFlip');
       this.stock.deal();
+      console.log('событие');
+      
       this.renderCards();
     });
 
     // Обработчики для drag-and-drop
-    document.addEventListener("mousemove", this.handleDrag.bind(this));
-    document.addEventListener("mouseup", this.handleDrop.bind(this));
+    // document.addEventListener("mousemove", this.handleDrag.bind(this));
+    // document.addEventListener("mouseup", this.handleDrop.bind(this));
   }
 
-  handleDrag(e) {
-    if (this.selectedCardElement) {
-      console.log('e.clientY:', e.clientX);
-      // console.log('this.selectedCard.containerRectTop:', this.selectedCard.containerRectTop);
-      this.eventClientX = e.clientX;
-      this.eventClientY = e.clientY;
-      this.selectedCardElement.style.left = e.clientX -  this.selectedCard.containerRectLeft - this.selectedCard.containerRectWidth / 2 + "px";
-      this.selectedCardElement.style.top = e.clientY -  this.selectedCard.containerRectTop - this.selectedCard.containerRectHeight  / 2 + "px";
-      this.selectedCardElement.style.zIndex = "1000";
-    }
-  }
+  // handleDrag(e) {
+  //   if (this.selectedCardElement) {
+  //     console.log('handleDrag:');
+  //     // console.log('this.selectedCard.containerRectTop:', this.selectedCard.containerRectTop);
+  //     this.eventClientX = e.clientX;
+  //     this.eventClientY = e.clientY;
+  //     this.selectedCardElement.style.left = e.clientX -  this.selectedCard.containerRectLeft - this.selectedCard.containerRectWidth / 2 + "px";
+  //     this.selectedCardElement.style.top = e.clientY -  this.selectedCard.containerRectTop - this.selectedCard.containerRectHeight  / 2 + "px";
+  //     this.selectedCardElement.style.zIndex = "1000";
+  //   }
+  // }
 
-  handleDrop() {
-    // if (this.selectedCard && this.selectedCardElement) {
-    //   // Пытаемся переместить карту
-    //   // ...
-    //   this.clearSelection();
-    //   this.renderCards();
-    // }
-    if (!this.selectedCard) return;
+  // handleDrop() {
+  //   // if (this.selectedCard && this.selectedCardElement) {
+  //   //   // Пытаемся переместить карту
+  //   //   // ...
+  //   //   this.clearSelection();
+  //   //   this.renderCards();
+  //   // }
+  //   if (!this.selectedCard) return;
 
-    // Проверяем, куда положить карту
-    const success =
-      this.tryMoveToFoundation(this.selectedCard) ||
-      this.tryMoveToTableau(this.selectedCard);
+  //   // Проверяем, куда положить карту
+  //   const success =
+  //     this.tryMoveToFoundation(this.selectedCard) ||
+  //     this.tryMoveToTableau(this.selectedCard);
 
-    if (!success) {
-      // Возвращаем карту на место
-      this.renderCards();
-    }
+  //   if (!success) {
+  //     // Возвращаем карту на место
+  //     this.renderCards();
+  //   }
 
-    this.clearSelection();
-  }
+  //   this.clearSelection();
+  // }
 }

@@ -18,7 +18,7 @@ export class Tableau {
     //   )
     // );
     // console.log('getComputedStyle(document.documentElement):', getComputedStyle(document.documentElement));
-    
+
     // const spacing = parseFloat(
     //   getComputedStyle(document.documentElement).getPropertyValue(
     //     "--card-spacing"
@@ -57,6 +57,12 @@ export class Tableau {
         this.cards[i].position = i;
       }
     }
+  }
+
+  updateCardPositions() {
+    this.cards.forEach((card, index) => {
+      card.position = index;
+    });
   }
 
   getValueIndex(value) {

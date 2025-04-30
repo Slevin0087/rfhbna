@@ -28,6 +28,7 @@ export class AudioManager {
       click: this.createSound("assets/sounds/click.mp3"),
       cardFlip: this.createSound("assets/sounds/card-flip.mp3"),
       // cardMove: this.createSound('assets/sounds/card-move.mp3'),
+      info: this.createSound("assets/sounds/info.mp3"),
       win: this.createSound("assets/sounds/win.mp3"),
     };
 

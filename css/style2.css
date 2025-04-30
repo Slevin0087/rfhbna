@@ -194,16 +194,29 @@ button:active {
   transform: scale(0.98);
 }
 
+@media (min-height: 400px) {
+  #game-container {
+    margin: 10px 2px;
+    padding: 2px;
+  }
+
+  button {
+    padding: 6px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+  }
+}
 
 @media (min-height: 600px) {
   #game-container {
     margin: 10px 2px;
     padding: 2px;
-    text-align: center;
-    justify-content: center;
-    min-height: 70vh;
-    max-height: 80vh;
-    box-sizing: border-box;
   }
 
   button {
@@ -259,7 +272,7 @@ button:active {
 
   .center {
     /* margin: 40px 0px 40px; */
-    font-size: 48px;
+    font-size: 45px;
   }
 
   .row-a,

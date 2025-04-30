@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Пасьянс Косынка</title>
+    <link rel="stylesheet" href="css/style2.css" />
+    <link rel="stylesheet" href="css/menu.css" />
+    <link rel="stylesheet" href="css/settings.css" />
+    <link rel="stylesheet" href="css/shop.css" />
+  </head>
+  <body>
+    <!-- Меню игры -->
+    <div id="game-menu" class="menu">
+      <h1>Хусынка</h1>
+      <button id="new-game-btn">Новая игра</button>
+      <button id="settings-btn">Настройки</button>
+      <button id="shop-btn">Магазин</button>
+      <button id="exit-btn">Выход</button>
+    </div>
+
+    <!-- Настройки -->
+    <div id="settings" class="settings hidden">
+      <h2>Настройки</h2>
+      <div class="setting-item">
+        <label
+          >Звуки: <input type="checkbox" id="sound-toggle" checked
+        /></label>
+      </div>
+      <div class="setting-item">
+        <label
+          >Сложность:
+          <select id="difficulty">
+            <option value="easy">Лёгкая</option>
+            <option value="normal" selected>Обычная</option>
+            <option value="hard">Сложная</option>
+          </select>
+        </label>
+      </div>
+      <button id="back-to-menu">Назад в меню</button>
+    </div>
+
+    <!-- Магазин -->
+    <div id="shop" class="shop hidden">
+      <h2>Магазин</h2>
+      <div class="shop-items">
+        <div class="item" data-id="skin1">
+          <img src="assets/skins/skin1.png" alt="Скин 1" />
+          <p>Ретро-карты</p>
+          <button class="buy-btn" data-price="100">Купить (100)</button>
+        </div>
+        <!-- Другие товары -->
+      </div>
+      <div class="balance">Баланс: <span id="coins">0</span> монет</div>
+      <button id="shop-back">Назад</button>
+    </div>
+
+    <!-- Игровой интерфейс -->
+    <div id="game-interface" class="hidden">
+      <div class="info-container" id="info-top">
+        <div id="message"></div>
+        <div class="points-game" id="points-in-game">Заработано Очков: 0</div>
+      </div>
+      <div id="game-container">
+        <div class="row-1" id="row">
+          <div class="row-a" id="stockDiv"></div>
+          <div class="row-b" id="foundationsDiv"></div>
+        </div>
+        <div class="row-2" id="tableausDiv"></div>
+      </div>
+      <!-- ... существующий игровой интерфейс ... -->
+    </div>
+    <!-- <div id="ingame-menu"> -->
+    <!-- <button id="hint">Подсказка</button> -->
+    <!-- </div> -->
+    <!-- </div> -->
+    <div id="controls">
+      <button id="new-game">Новая игра</button>
+      <button id="hint">Подсказка</button>
+      <button id="menu-btn">Меню</button>
+    </div>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

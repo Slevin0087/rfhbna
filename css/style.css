@@ -1,0 +1,440 @@
+/* Глобальные переменные и настройки */
+:root {
+  /* Цвета */
+  --bg-color: #076324; /* Зеленый фон как в классической косынке */
+  --text-color: white;
+  --card-bg: white;
+  --card-red: red;
+  --card-black: black;
+  --card-back-bg: linear-gradient(135deg, #d00, #a00);
+  --card-back-border: #800;
+  --button-bg: #1a3e1a;
+
+  /* Размеры карт */
+  --card-width-mobile: 13vw;
+  --card-height-mobile: 10vh;
+  --card-width-tablet: 70px;
+  --card-height-tablet: 100px;
+  --card-width-desktop: 6.5vw;
+  --card-height-desktop: 23vh;
+
+  /* Отступы */
+  --game-container-padding: 3vh;
+  --button-padding: 8px 15px;
+  --top-top: 10vh;
+  /* Разеры высоты и ширины*/
+  --body-height: 100vh;
+  --body-width: 100vw;
+  --left-right-padding: 1vw;
+  --left-foundation-0: 45vw;
+  --game-container-height: 80vh;
+  --game-container-width: 100vw;
+  --controls-height: calc(10vh / 2);
+  --message-top: 10vh;
+  --padding-left-foundation: calc(
+    (
+        var(--body-width) -
+          (var(--card-width-mobile) * 7 + (var(--left-right-padding) * 2))
+      ) / 6
+  );
+  --card-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+
+  /* Временные параметры */
+  --hover-transition: transform 0.2s;
+}
+
+/* @media screen and (min-device-width: 320px) and (max-device-width: 420px) { */
+html {
+  font-size: 16px;
+  /*Основная единица измерения*/
+  line-height: 1.15;
+  height: 100%; /* Для полностраничных макетов */
+  width: 100%;
+  -webkit-text-size-adjust: 100%; /*Стандартная высота строки*/
+  -webkit-font-smoothing: antialiased; /* Сглаживание шрифтов для WebKit */
+  -moz-osx-font-smoothing: grayscale; /* Сглаживание шрифтов для macOS */
+  /*Отключает автоматическое увеличение текста в Safari*/
+  scroll-behavior: smooth; /*Плавная прокрутка*/
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
+  text-rendering: optimizeLegibility; /* Улучшает читаемость */
+
+
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit; /* Наследуем box-sizing */
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  width: 100vw;
+  min-height: 100vh;
+  /* box-sizing: border-box; */
+  touch-action: manipulation;
+  background-color: #076324;
+  color: white;
+  overflow: hidden;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 350px) {
+    font-size: 14px;
+  }
+
+  @media (min-width: 600px) {
+    font-size: 15px;
+  }
+
+  @media (min-width: 900px) {
+    font-size: 16px;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 18px;
+  }
+}
+
+#game-container {
+  width: var(--game-container-width);
+  height: var(--game-container-height);
+  margin: 10px;
+  padding: 5px;
+}
+
+/* Стили для карт и игровых зон */
+.stock,
+.card-placeholder,
+.foundation,
+.card {
+  position: absolute;
+  width: var(--card-width-mobile);
+  height: var(--card-height-mobile);
+  top: var(--top-top);
+
+  border-radius: 5px;
+  box-sizing: border-box;
+
+  @media (min-width: 1200px) {
+    --top-top: 5vh;
+    width: var(--card-width-desktop);
+    height: var(--card-height-desktop);
+    top: var(--top-top);
+  }
+}
+
+.card-placeholder,
+.foundation {
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+}
+
+.card {
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4vw;
+  font-weight: bold;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s;
+  user-select: none;
+}
+
+.card.red {
+  color: red;
+}
+
+.card.black {
+  color: black;
+}
+
+.card-back,
+.stock {
+  background: repeating-linear-gradient(
+    45deg,
+    #1a5a1a,
+    #1a5a1a 10px,
+    #165016 10px,
+    #165016 20px
+  );
+  color: transparent !important;
+}
+
+#message {
+  display: block;
+  /* top: var(--message-top); */
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+  /* font-size: 1.2rem; */
+  /* height: 3vh; */
+  top: 20px;
+}
+
+#controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.stock {
+  left: 2%;
+  top: var(--top-top);
+  @media (min-width: 1200px) {
+    --left-right-padding: calc(var(--body-width) / 4);
+    left: var(--left-right-padding);
+  }
+}
+#waste {
+  /* left: 15%; */
+  top: var(--top-top);
+  @media (min-width: 1200px) {
+    --left-right-padding: calc(var(--body-width) / 4);
+    --padding-left-foundation: calc(
+      (
+          var(--body-width) -
+            (var(--card-width-desktop) * 7 + (var(--left-right-padding) * 2))
+        ) / 6
+    );
+    left: calc(
+      var(--card-width-desktop) + var(--padding-left-foundation) +
+        var(--left-right-padding)
+    );
+  }
+}
+.foundation {
+  top: var(--top-top);
+}
+#foundation-0 {
+  right: calc(
+    (var(--card-width-mobile) + var(--padding-left-foundation)) * 3 +
+      var(--left-right-padding)
+  );
+  @media (min-width: 1200px) {
+    --left-right-padding: calc(var(--body-width) / 4);
+    --padding-left-foundation: calc(
+      (
+          var(--body-width) -
+            (var(--card-width-desktop) * 7 + (var(--left-right-padding) * 2))
+        ) / 6
+    );
+    right: calc(
+      (var(--card-width-desktop) + var(--padding-left-foundation)) * 3 +
+        var(--left-right-padding)
+    );
+    /* top: 40%; */
+  }
+}
+#foundation-1 {
+  right: calc(
+    (var(--card-width-mobile) + var(--padding-left-foundation)) * 2 +
+      var(--left-right-padding)
+  );
+  @media (min-width: 1200px) {
+    --left-right-padding: calc(var(--body-width) / 4);
+    --padding-left-foundation: calc(
+      (
+          var(--body-width) -
+            (var(--card-width-desktop) * 7 + (var(--left-right-padding) * 2))
+        ) / 6
+    );
+    right: calc(
+      (var(--card-width-desktop) + var(--padding-left-foundation)) * 2 +
+        var(--left-right-padding)
+    );
+    /* top: 40%; */
+  }
+}
+#foundation-2 {
+  right: calc(
+    var(--card-width-mobile) + var(--padding-left-foundation) +
+      var(--left-right-padding)
+  );
+  @media (min-width: 1200px) {
+    --left-right-padding: calc(var(--body-width) / 4);
+    --padding-left-foundation: calc(
+      (
+          var(--body-width) -
+            (var(--card-width-desktop) * 7 + (var(--left-right-padding) * 2))
+        ) / 6
+    );
+    right: calc(
+      var(--card-width-desktop) + var(--padding-left-foundation) +
+        var(--left-right-padding)
+    );
+    /* top: 40%; */
+  }
+}
+#foundation-3 {
+  right: var(--left-right-padding);
+  @media (min-width: 1200px) {
+    --left-right-padding: calc(var(--body-width) / 4);
+    /* top: 40%; */
+    right: var(--left-right-padding);
+  }
+}
+.card-placeholder#tableau-0 {
+  right: calc(
+    (var(--card-width-mobile) + var(--padding-left-foundation)) * 6 +
+      var(--left-right-padding)
+  );
+  top: 30%;
+  @media (min-width: 1200px) {
+    --left-right-padding: calc(var(--body-width) / 4);
+    --padding-left-foundation: calc(
+      (
+          var(--body-width) -
+            (var(--card-width-desktop) * 7 + (var(--left-right-padding) * 2))
+        ) / 6
+    );
+    right: calc(
+      (var(--card-width-desktop) + var(--padding-left-foundation)) * 6 +
+        var(--left-right-padding)
+    );
+    /* top: 40%; */
+  }
+}
+.card-placeholder#tableau-1 {
+  right: calc(
+    (var(--card-width-mobile) + var(--padding-left-foundation)) * 5 +
+      var(--left-right-padding)
+  );
+  top: 30%;
+  @media (min-width: 1200px) {
+    --left-right-padding: calc(var(--body-width) / 4);
+    --padding-left-foundation: calc(
+      (
+          var(--body-width) -
+            (var(--card-width-desktop) * 7 + (var(--left-right-padding) * 2))
+        ) / 6
+    );
+    right: calc(
+      (var(--card-width-desktop) + var(--padding-left-foundation)) * 5 +
+        var(--left-right-padding)
+    );
+    /* top: 40%; */
+  }
+}
+.card-placeholder#tableau-2 {
+  right: calc(
+    (var(--card-width-mobile) + var(--padding-left-foundation)) * 4 +
+      var(--left-right-padding)
+  );
+  top: 30%;
+  @media (min-width: 1200px) {
+    --left-right-padding: calc(var(--body-width) / 4);
+    --padding-left-foundation: calc(
+      (
+          var(--body-width) -
+            (var(--card-width-desktop) * 7 + (var(--left-right-padding) * 2))
+        ) / 6
+    );
+    right: calc(
+      (var(--card-width-desktop) + var(--padding-left-foundation)) * 4 +
+        var(--left-right-padding)
+    );
+    /* top: 40%; */
+  }
+}
+.card-placeholder#tableau-3 {
+  right: calc(
+    (var(--card-width-mobile) + var(--padding-left-foundation)) * 3 +
+      var(--left-right-padding)
+  );
+  top: 30%;
+  @media (min-width: 1200px) {
+    --left-right-padding: calc(var(--body-width) / 4);
+    --padding-left-foundation: calc(
+      (
+          var(--body-width) -
+            (var(--card-width-desktop) * 7 + (var(--left-right-padding) * 2))
+        ) / 6
+    );
+    right: calc(
+      (var(--card-width-desktop) + var(--padding-left-foundation)) * 3 +
+        var(--left-right-padding)
+    );
+    /* top: 40%; */
+  }
+}
+.card-placeholder#tableau-4 {
+  right: calc(
+    (var(--card-width-mobile) + var(--padding-left-foundation)) * 2 +
+      var(--left-right-padding)
+  );
+  top: 30%;
+  @media (min-width: 1200px) {
+    --left-right-padding: calc(var(--body-width) / 4);
+    --padding-left-foundation: calc(
+      (
+          var(--body-width) -
+            (var(--card-width-desktop) * 7 + (var(--left-right-padding) * 2))
+        ) / 6
+    );
+    right: calc(
+      (var(--card-width-desktop) + var(--padding-left-foundation)) * 2 +
+        var(--left-right-padding)
+    );
+    /* top: 40%; */
+  }
+}
+.card-placeholder#tableau-5 {
+  right: calc(
+    var(--card-width-mobile) + var(--padding-left-foundation) +
+      var(--left-right-padding)
+  );
+  top: 30%;
+  @media (min-width: 1200px) {
+    --left-right-padding: calc(var(--body-width) / 4);
+    --padding-left-foundation: calc(
+      (
+          var(--body-width) -
+            (var(--card-width-desktop) * 7 + (var(--left-right-padding) * 2))
+        ) / 6
+    );
+    right: calc(
+      var(--card-width-desktop) + var(--padding-left-foundation) +
+        var(--left-right-padding)
+    );
+    /* top: 40%; */
+  }
+}
+.card-placeholder#tableau-6 {
+  right: var(--left-right-padding);
+  top: 30%;
+  @media (min-width: 1200px) {
+    --left-right-padding: calc(var(--body-width) / 4);
+    /* top: 40%; */
+    right: var(--left-right-padding);
+  }
+}
+/* } */

@@ -254,7 +254,7 @@ button:active {
 
   .card-placeholder,
   .foundation {
-    border: 1px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
   }
 
   .center {
@@ -297,7 +297,7 @@ button:active {
 
   .card-placeholder,
   .foundation {
-    border: 5px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
   }
 
   .center {

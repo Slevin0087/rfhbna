@@ -167,7 +167,7 @@ export class Game {
     // card.getSymbol();
     const cStyle = window.getComputedStyle(container);
     const cStyleBorderRadius = parseInt(cStyle.borderRadius);
-    // console.log('cStyleBorderRadius:', cStyleBorderRadius);
+    console.log('cStyleBorderRadius:', cStyleBorderRadius);
 
     // console.log('cardElement.style.left:', typeof cardElement.style.left);
     cardElement.style.position = "absolute";

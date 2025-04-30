@@ -41,6 +41,12 @@ export class Stock {
     return card;
   }
 
+  removeCurrentCard(card) {
+    this.index--;
+    const cardFilter = this.cards.filter((c) => c !== card);
+    this.cards = cardFilter;
+  }
+
   getCurrentCard() {
     if (this.index > 0) {
       return this.cards[this.index - 1];

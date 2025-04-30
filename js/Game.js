@@ -40,6 +40,7 @@ export class Game {
   }
 
   init() {
+    // this.audio.playMusic();
     this.clearGame();
     this.setupGame();
     this.renderGame();
@@ -196,6 +197,7 @@ export class Game {
     } else if (containerId.startsWith("tableau-")) {
       const column = parseInt(containerId.split("-")[1]);
       cardElement.addEventListener("click", () => {
+        this.audio.play('cardFlip');
         this.tableaus[column].flipTopCard();
         this.renderCards();
       });
@@ -240,11 +242,13 @@ export class Game {
   }
 
   handleCardClick(card) {
+    this.audio.play('click');
     // 1. Проверяем Foundation
     for (let i = 0; i < this.foundations.length; i++) {
       if (this.foundations[i].canAccept(card)) {
         this.moveCardToFoundation(card, i);
         if (this.checkWin()) {
+          this.audio.play('win');
           this.messageEl.textContent = "Поздравляем! Вы выиграли!";
         }
         return;
@@ -260,8 +264,9 @@ export class Game {
     }
   
     // 3. Если никуда нельзя
+    const originalText = this.messageEl.textContent;
     this.messageEl.textContent = "Нельзя переместить карту";
-    setTimeout(() => this.messageEl.textContent = "", 1500);
+    setTimeout(() => this.messageEl.textContent = originalText, 1500);
   }
 
   selectCard(card, cardElement) {
@@ -416,11 +421,7 @@ export class Game {
     // Ищем карту в waste (стоке)
     const wasteCard = this.stock.getCurrentCard();
     if (wasteCard === card) {
-      this.stock.index--;
-      const cardFilter = this.stock.cards.filter((c) => c !== card);
-      this.stock.cards = cardFilter;
-      console.log('cardFilter:', cardFilter);
-      console.log('this.stock.cards:', this.stock.cards);
+      this.stock.removeCurrentCard(card);
       return;
     }
 
@@ -594,6 +595,7 @@ export class Game {
 
   setupEventListeners() {
     this.stock.element.addEventListener("click", () => {
+      this.audio.play('cardFlip');
       this.stock.deal();
       this.renderCards();
     });

@@ -1,7 +1,6 @@
 import { Deck } from "./Deck.js";
 import { Foundation } from "./Foundation.js";
 import { Tableau } from "./Tableau.js";
-// import { Stock } from './Stock.js';
 import { Stock } from "./Stock.js";
 import { AudioManager } from "./ui/Audio.js";
 import { GameStorage } from "./utils/Storage.js";
@@ -35,7 +34,6 @@ export class Game {
     );
 
     this.deck = new Deck();
-    // console.log('this.deck:', this.deck);
     this.foundations = Array.from({ length: 4 }, (_, i) => new Foundation(i));
     this.tableaus = Array.from({ length: 7 }, (_, i) => new Tableau(i));
     this.stock = new Stock();
@@ -89,8 +87,6 @@ export class Game {
 
   renderGame() {
     // Добавляем элементы в DOM
-
-    // this.gameContainer.appendChild(this.stock.wasteElement);
     this.gameContainer.append(this.rowElement, this.tableausEl);
     this.rowElement.append(this.stockDivEl, this.foundationsDiv);
 
@@ -259,9 +255,12 @@ export class Game {
 
     // 1. Проверяем Foundation
     for (let i = 0; i < this.foundations.length; i++) {
-      if (this.foundations[i].canAccept(card) && !card.foundation) {
+      // if (this.foundations[i].canAccept(card) && !card.foundation) {
+        if (this.foundations[i].canAccept(card)) {
         this.moveCardToFoundation(card, i);
         if (this.checkWin()) {
+          console.log('win');
+          
           this.audio.play("win");
           this.messageEl.textContent = "Поздравляем! Вы выиграли!";
           this.poinsGame += 50;
@@ -413,8 +412,8 @@ export class Game {
 
   moveCardToFoundation(card, foundationIndex) {
     this.removeCardFromCurrentPosition(card, foundationIndex, "foundation");
-    this.foundations[foundationIndex].addCard(card);
-    this.foundations[foundationIndex].element.appendChild(card.cardEl);
+    // this.foundations[foundationIndex].addCard(card);
+    // this.foundations[foundationIndex].element.appendChild(card.cardEl);
     console.log("this.foundations:", this.foundations);
     this.poinsGame += 2;
     this.pointsElement.textContent = `Заработано Очков: ${this.poinsGame}`;

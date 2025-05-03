@@ -598,6 +598,7 @@ export class Game {
 
     this.messageEl.textContent =
       "Подсказка: нет доступных ходов, попробуйте раздать карты из стока";
+      this.setHintTimeout();
   }
 
   highlightCard(card) {

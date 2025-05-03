@@ -18,15 +18,18 @@ export class Foundation {
   // canAccept(card) проверяет карту, можно ли её класть на foundation. возвращает true или false. если foundation пустой, то возвращает true, если карта это туз "A",
   // если не пустой foundation, то возвращает true, если карта той же масти, что и находящейся уже там карты и если по иерархии больше той, что уже лежит
   canAccept(card) {
-    if (this.cards.length === 0) {
+    if (card.foundation) !card.foundation;
+    else if (this.cards.length === 0) {
       return card.value === "A";
+    } else {
+      const topCard = this.cards[this.cards.length - 1];
+      return (
+        card.suit === topCard.suit &&
+        this.getValueIndex(card.value) === this.getValueIndex(topCard.value) + 1
+      );
+
     }
 
-    const topCard = this.cards[this.cards.length - 1];
-    return (
-      card.suit === topCard.suit &&
-      this.getValueIndex(card.value) === this.getValueIndex(topCard.value) + 1
-    );
   }
 
   addCard(card) {

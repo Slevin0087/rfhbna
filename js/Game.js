@@ -4,30 +4,29 @@ import { Tableau } from "./Tableau.js";
 import { Stock } from "./Stock.js";
 import { AudioManager } from "./ui/Audio.js";
 import { GameStorage } from "./utils/Storage.js";
+import { Config } from "./ConfigGame.js";
 
 export class Game {
   constructor() {
     this.audio = new AudioManager();
     this.storage = GameStorage;
     this.settings = this.storage.getSettings();
-
+    this.originalText = Config.originalText;
     // Инициализация с учётом настроек
     this.audio.toggle(this.settings.sound);
     this.gameContainer = document.getElementById("game-container");
     this.rowElement = document.getElementById("row");
-    console.log("this.gameContainer:", this.gameContainer);
-
     this.messageEl = document.getElementById("message");
     this.stockDivEl = document.getElementById("stockDiv");
     this.foundationsDiv = document.getElementById("foundationsDiv");
     this.tableausEl = document.getElementById("tableausDiv");
     this.pointsElement = document.getElementById("points-in-game");
+    this.buttonsContainer = document.getElementById("controls");
     this.selectedCard = null;
     this.selectedCardElement = null;
     this.hintTimeout = null;
     this.eventClientX = null;
     this.eventClientY = null;
-    this.poinsGame = 0;
     this.foundationElement = document.elementFromPoint(
       this.eventClientX,
       this.eventClientY
@@ -45,7 +44,7 @@ export class Game {
     this.setupGame();
     this.renderGame();
     this.setupEventListeners();
-    this.messageEl.textContent = "Игра началась, Хусин!";
+    this.messageEl.textContent = this.originalText;
   }
 
   clearGame() {
@@ -53,6 +52,7 @@ export class Game {
     this.rowElement.innerHTML = "";
     this.stockDivEl.innerHTML = "";
     this.tableausEl.innerHTML = "";
+    this.foundationsDiv.innerHTML = "";
     this.selectedCard = null;
     this.selectedCardElement = null;
     clearTimeout(this.hintTimeout);
@@ -65,6 +65,7 @@ export class Game {
   }
 
   setupGame() {
+    this.poinsGame = 0;
     this.deck.shuffle();
     // Раздаем карты в tableau
     for (let i = 0; i < 7; i++) {
@@ -87,7 +88,7 @@ export class Game {
 
   renderGame() {
     // Добавляем элементы в DOM
-    this.gameContainer.append(this.rowElement, this.tableausEl);
+    this.gameContainer.append(this.rowElement, this.tableausEl, this.buttonsContainer);
     this.rowElement.append(this.stockDivEl, this.foundationsDiv);
 
     this.stockDivEl.appendChild(this.stock.element);
@@ -105,12 +106,10 @@ export class Game {
   }
 
   renderCards() {
-    // console.log("renders");
-
     // Очищаем старые карты
     document.querySelectorAll(".card").forEach((el) => el.remove());
     // Рендерим карты в tableau
-    console.log("this.tableaus:", this.tableaus);
+    // console.log("this.tableaus:", this.tableaus);
     this.tableaus.forEach((tableau, i) => {
       tableau.cards.forEach((card, j) => {
         this.renderCard(card, `tableau-${i}`, j);
@@ -135,19 +134,13 @@ export class Game {
   }
 
   renderCard(card, containerId, offset) {
-    // console.log("render");
     const container = document.getElementById(containerId);
-
-    // console.log('container.getBoundingClientRect():', container.getBoundingClientRect().left);
     if (!container) return;
     const stateContainer = container.getBoundingClientRect();
-    // console.log('stateContainer:', stateContainer);
     card.containerRectLeft = stateContainer.left;
     card.containerRectTop = stateContainer.top;
     card.containerRectWidth = stateContainer.width;
     card.containerRectHeight = stateContainer.height;
-    // console.log('card:', card);
-
     const cardElement = document.createElement("div");
     const spanElementLeft = document.createElement("span");
     const spanElementCenter = document.createElement("span");
@@ -163,9 +156,7 @@ export class Game {
     // card.getSymbol();
     const cStyle = window.getComputedStyle(container);
     const cStyleBorderRadius = parseInt(cStyle.borderRadius);
-    // console.log('cStyleBorderRadius:', cStyleBorderRadius);
 
-    // console.log('cardElement.style.left:', typeof cardElement.style.left);
     cardElement.style.position = "absolute";
     cardElement.style.left = -cStyleBorderRadius / 2 + "px";
 
@@ -173,7 +164,7 @@ export class Game {
       const wH = document.documentElement.clientHeight;
 
       console.log("wH:", wH);
-      const topPx = wH < 500 ? 12 : 25;
+      const topPx = wH <= 540 ? 11 : 25;
       cardElement.style.top = offset * topPx - cStyleBorderRadius / 2 + "px";
     } else {
       cardElement.style.top = -cStyleBorderRadius / 2 + "px";
@@ -193,8 +184,11 @@ export class Game {
     } else if (containerId.startsWith("tableau-")) {
       const column = parseInt(containerId.split("-")[1]);
       cardElement.addEventListener("click", () => {
+        console.log('клик по закрытой карте');
+        
         this.audio.play("cardFlip");
         this.tableaus[column].flipTopCard();
+        this.incrementPoints(Config.pointsForCardFlip);
         this.renderCards();
       });
     }
@@ -204,19 +198,6 @@ export class Game {
     card.parentElement = container;
     card.cardEl = cardElement;
   }
-
-  // handleCardClick(card, cardElement) {
-  //   console.log("клик по карте");
-  //   // this.selectCard(card, cardElement);
-  //   if (this.selectedCard) {
-  //     // console.log('if (this.selectedCard)');
-  //     this.tryMoveCard(this.selectedCard, card);
-  //     this.clearSelection();
-  //   } else {
-  //     // console.log('if (this.selectedCard) ELSE');
-  //     this.selectCard(card, cardElement);
-  //   }
-  // }
 
   addCoins(amount) {
     const current = parseInt(localStorage.getItem("gameCoins") || 0);
@@ -251,39 +232,43 @@ export class Game {
 
   handleCardClick(card) {
     this.audio.play("click");
-    console.log("card:", card);
-
+    console.log("клик по card:", card);
+    console.log("Проверяем Foundation");
     // 1. Проверяем Foundation
     for (let i = 0; i < this.foundations.length; i++) {
       // if (this.foundations[i].canAccept(card) && !card.foundation) {
-        if (this.foundations[i].canAccept(card)) {
+      if (this.foundations[i].canAccept(card)) {
+        console.log('es');
+        
         this.moveCardToFoundation(card, i);
+        this.incrementPoints(Config.pointsForFoundation);
         if (this.checkWin()) {
-          console.log('win');
-          
+          console.log("win");
+
           this.audio.play("win");
-          this.messageEl.textContent = "Поздравляем! Вы выиграли!";
-          this.poinsGame += 50;
-          this.pointsElement.textContent = `Заработано Очков: ${this.poinsGame}`;
+          this.messageEl.textContent = Config.originalWinText;
+          this.incrementPoints(Config.pointsForWin);
         }
         return;
       }
     }
 
+    console.log("Проверяем Tableau");
     // 2. Проверяем Tableau
     for (let i = 0; i < this.tableaus.length; i++) {
       if (this.tableaus[i].canAccept(card)) {
         this.moveCardToTableau(card, i);
+        this.incrementPoints(Config.pointsForTableaue);
         return;
       }
     }
 
     // 3. Если никуда нельзя
-    const originalText = this.messageEl.textContent;
+    // const originalText = this.messageEl.textContent;
     // this.messageEl.textContent = "Нельзя переместить карту";
-    this.messageEl.textContent = "Йгьауашым!";
+    this.messageEl.textContent = Config.originalInfoText;
     this.audio.play("info");
-    setTimeout(() => (this.messageEl.textContent = originalText), 1500);
+    setTimeout(() => (this.messageEl.textContent = this.originalText), 1500);
   }
 
   selectCard(card, cardElement) {
@@ -410,29 +395,28 @@ export class Game {
   //   return false;
   // }
 
+  incrementPoints(point) {
+    this.poinsGame += point;
+    this.pointsElement.textContent = `Заработано Очков: ${this.poinsGame}`;
+  }
+
+  decrementPoints(point) {
+    this.poinsGame -= point;
+    this.pointsElement.textContent = `Заработано Очков: ${this.poinsGame}`;
+  }
+
   moveCardToFoundation(card, foundationIndex) {
     this.removeCardFromCurrentPosition(card, foundationIndex, "foundation");
-    // this.foundations[foundationIndex].addCard(card);
-    // this.foundations[foundationIndex].element.appendChild(card.cardEl);
-    console.log("this.foundations:", this.foundations);
-    this.poinsGame += 2;
-    this.pointsElement.textContent = `Заработано Очков: ${this.poinsGame}`;
     this.renderCards();
   }
 
   moveCardToTableau(card, tableauIndex) {
     this.removeCardFromCurrentPosition(card, tableauIndex, "tableau");
-    // this.tableaus[tableauIndex].addCard(card);
-    // this.tableaus[tableauIndex].element.appendChild(card.cardEl);
-    console.log("this.tableaus:", this.tableaus);
-
-    this.poinsGame += 2;
-    this.pointsElement.textContent = `Заработано Очков: ${this.poinsGame}`;
     this.renderCards();
   }
 
   removeCardFromCurrentPosition(card, containerIndex, nameContainer) {
-    console.log("перекладывание card:", card);
+    console.log("удаление card:", card);
 
     // Ищем карту в tableau
     // for (let tableau of this.tableaus) {
@@ -443,16 +427,18 @@ export class Game {
     //     return;
     //   }
     // }
+    console.log('Ищем карту в tableau');
+    
     for (let i = 0; i < this.tableaus.length; i++) {
       const index = this.tableaus[i].cards.indexOf(card);
-      console.log("this.tableaus:", this.tableaus);
+      // console.log("this.tableaus:", this.tableaus);
 
       if (index !== -1) {
         // Удаляем карту и все карты выше неё (если это стопка)
         const removedCards = this.tableaus[i].cards.splice(index);
-        console.log("removedCards:", removedCards);
+        // console.log("removedCards:", removedCards);
         if (removedCards.length === 1) {
-          console.log("одна карта");
+          // console.log("одна карта");
           this.tableaus[i].removeCard(card);
           if (nameContainer === "tableau") {
             this.tableaus[containerIndex].addCard(card);
@@ -461,9 +447,9 @@ export class Game {
             this.foundations[containerIndex].addCard(card);
             this.foundations[containerIndex].element.appendChild(card.cardEl);
           }
-          console.log("после IF this.tableaus:", this.tableaus);
+          // console.log("после IF this.tableaus:", this.tableaus);
         } else if (removedCards.length > 1) {
-          console.log("больше одной карты");
+          // console.log("больше одной карты");
           removedCards.forEach((card) => {
             this.tableaus[i].removeCard(card);
             if (nameContainer === "tableau") {
@@ -474,7 +460,7 @@ export class Game {
               this.foundations[containerIndex].element.appendChild(card.cardEl);
             }
           });
-          console.log("после ELSE this.tableaus:", this.tableaus);
+          // console.log("после ELSE this.tableaus:", this.tableaus);
           // Если перемещали стопку, нужно обновить позиции оставшихся карт
           this.tableaus[i].updateCardPositions();
         }
@@ -482,11 +468,12 @@ export class Game {
       }
     }
 
+    console.log('Ищем карту в waste');
     // Ищем карту в waste (стоке)
     const wasteCard = this.stock.getCurrentCard();
     if (wasteCard === card) {
       card.wasteCard = false;
-      console.log("card.wasteCard:", card.wasteCard);
+      // console.log("card.wasteCard:", card.wasteCard);
       this.stock.removeCurrentCard(card);
       if (nameContainer === "tableau") {
         this.tableaus[containerIndex].addCard(card);
@@ -498,21 +485,31 @@ export class Game {
       return;
     }
 
+    console.log('Ищем карту в foundations');
     // Ищем карту в foundations
     for (let foundation of this.foundations) {
       const index = foundation.cards.indexOf(card);
-      if (index !== -1) {
+      if (index !== -1 && card.value !== "A") {
         foundation.cards.splice(index, 1);
         card.foundation = false;
-        console.log("card.foundation:", card.foundation);
+        // console.log("card.foundation:", card.foundation);
 
         card.parentElement.removeChild(card.cardEl);
+        this.tableaus[containerIndex].addCard(card);
+        this.tableaus[containerIndex].element.appendChild(card.cardEl);
+        this.decrementPoints(Config.pointsFromFoundationToTableaue);
         return;
       }
     }
   }
 
   showHint() {
+    if (this.poinsGame < Config.pointsForHint) {
+      this.messageEl.textContent = Config.originalHintText;
+      setTimeout(() => (this.messageEl.textContent = this.originalText), 3000);
+      return;
+    }
+    this.decrementPoints(Config.pointsForHint);
     this.clearHint();
 
     // 1. Проверяем карту в waste (стоке)
@@ -661,7 +658,7 @@ export class Game {
   setHintTimeout() {
     this.hintTimeout = setTimeout(() => {
       this.clearHint();
-      this.messageEl.textContent = "";
+      this.messageEl.textContent = this.originalText;
     }, 3000);
   }
 

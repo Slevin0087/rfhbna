@@ -31,15 +31,18 @@ export class Tableau {
   }
 
   canAccept(card) {
-    if (this.cards.length === 0) {
+    if (card.value === "A") false;
+    else if (this.cards.length === 0) {
       return card.value === "K";
+    } else {
+
+      const topCard = this.cards[this.cards.length - 1];
+      return (
+        card.color !== topCard.color &&
+        this.getValueIndex(card.value) === this.getValueIndex(topCard.value) - 1
+      );
     }
 
-    const topCard = this.cards[this.cards.length - 1];
-    return (
-      card.color !== topCard.color &&
-      this.getValueIndex(card.value) === this.getValueIndex(topCard.value) - 1
-    );
   }
 
   addCard(card) {

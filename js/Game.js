@@ -44,7 +44,7 @@ export class Game {
     this.setupGame();
     this.renderGame();
     this.setupEventListeners();
-    this.messageEl.textContent = this.originalText;
+    // this.messageEl.textContent = this.originalText;
   }
 
   clearGame() {
@@ -179,6 +179,7 @@ export class Game {
     cardElement.dataset.color = card.color;
 
     if (card.faceUp) {
+      cardElement.classList.add("card-faceUp");
       // this.handleCardClick(card, cardElement)
       cardElement.addEventListener("click", () => this.handleCardClick(card));
     } else if (containerId.startsWith("tableau-")) {
@@ -208,27 +209,27 @@ export class Game {
   // this.addCoins(10); // За каждую карту в дом
   // this.addCoins(50); // За победу
 
-  applySkin(skinId) {
-    const skin = {
-      skin1: {
-        back: "url(retro-back.png)",
-        colors: { red: "#c00", black: "#333" },
-      },
-      skin2: {
-        back: "url(gothic-back.png)",
-        colors: { red: "#900", black: "#111" },
-      },
-    };
+  // applySkin(skinId) {
+  //   const skin = {
+  //     skin1: {
+  //       back: "url(retro-back.png)",
+  //       colors: { red: "#c00", black: "#333" },
+  //     },
+  //     skin2: {
+  //       back: "url(gothic-back.png)",
+  //       colors: { red: "#900", black: "#111" },
+  //     },
+  //   };
 
-    document.documentElement.style.setProperty(
-      "--card-back",
-      skin[skinId].back
-    );
-    document.documentElement.style.setProperty(
-      "--red-color",
-      skin[skinId].colors.red
-    );
-  }
+  //   document.documentElement.style.setProperty(
+  //     "--card-back",
+  //     skin[skinId].back
+  //   );
+  //   document.documentElement.style.setProperty(
+  //     "--red-color",
+  //     skin[skinId].colors.red
+  //   );
+  // }
 
   handleCardClick(card) {
     this.audio.play("click");

@@ -41,6 +41,32 @@ body {
   justify-content: center;
 } */
 
+.modal {
+  position: fixed;
+  z-index: 1;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(161, 13, 13, 0.8);
+}
+
+.modal-content {
+  position: absolute;
+  top: calc(50% - 75px);
+  left: calc(50% - 125px);
+  width: 250px;
+  height: 150px;
+}
+
+.name-h2 {
+  color: #22e44c;
+}
+
+.modal-buttons {
+  margin-top: 5px;
+}
+
 #message {
   text-align: center;
   padding: 10px;
@@ -119,10 +145,10 @@ body {
 
 .card {
   position: absolute;
-  /* background: white; */
-  background: #475749;
+  background: white;
+  /* background: #475749;
   color: white;
-  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+  box-shadow: 0 0 10px rgba(255,255,255,0.1); */
   /* display: flex; */
   /* align-items: center; */
   /* justify-content: center; */
@@ -166,15 +192,42 @@ body {
 
 .card.red {
   color: red;
-  text-shadow: 0 0 5px #8a6c74, 0 0 10px #1eff00;
+  /* text-shadow: 0 0 5px #8a6c74, 0 0 10px #1eff00; */
 }
 
 .card.black {
   color: black;
-  text-shadow: 0 0 5px #66ccff, 0 0 10px #3399ff;
+  /* text-shadow: 0 0 5px #66ccff, 0 0 10px #3399ff; */
 }
 
-/* .card-back,
+.card-faceUp {
+  background-color: #a8c5c4;
+  background-image: 
+    linear-gradient(90deg, 
+      rgba(139,69,19,0.1) 0%, 
+      transparent 50%, 
+      rgba(139,69,19,0.1) 100%);
+  border: 1px solid #8B4513;
+  color: #5a3921;
+  font-weight: bold;
+}
+/* .card-faceUp {
+  background: #475749;
+  color: white;
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+.card-faceUp.card.red {
+  color: red;
+  text-shadow: 0 0 5px #8a6c74, 0 0 10px #1eff00;
+}
+
+.card-faceUp.card.black {
+  color: black;
+  text-shadow: 0 0 5px #66ccff, 0 0 10px #3399ff;
+} */
+
+.card-back,
 .stock {
   background: repeating-linear-gradient(
     45deg,
@@ -184,9 +237,9 @@ body {
     #165016 20px
   );
   color: transparent !important;
-} */
+}
 
-.card-back,
+/* .card-back,
 .stock {
   background: repeating-linear-gradient(
     45deg,
@@ -196,11 +249,19 @@ body {
     #6b0000 20px
   );
   box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-}
+} */
 
-.foundation {
-  left: 0;
-}
+/* .card-back,
+.stock {
+  background: repeating-linear-gradient(
+    45deg,
+    #8b0000,
+    #8b0000 10px,
+    #6b0000 10px,
+    #6b0000 20px
+  );
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+} */
 
 button {
   padding: 12px 24px;

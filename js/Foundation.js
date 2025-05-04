@@ -33,7 +33,9 @@ export class Foundation {
   }
 
   addCard(card) {
+    card.indexFoundation = this.index;
     card.foundation = true;
+    card.parent = 'foundation'
     this.cards.push(card);
   }
 

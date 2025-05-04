@@ -22,19 +22,20 @@ document.addEventListener("DOMContentLoaded", () => {
     nameValue = document.getElementById("player-name").value;
     name.modal.style.display = "none";
     console.log("nameValue:", nameValue);
-    document.getElementById('message').textContent = 'Игра началась, ' + nameValue;
+    // document.getElementById('message').textContent = 'Игра началась, ' + nameValue + '!';
+    game.originalText = 'Игра началась, ' + nameValue + '!';
     menu.showMainMenu();
   });
   document.getElementById("skip-name").addEventListener("click", () => {
     nameValue = "";
     name.modal.style.display = "none";
-    document.getElementById('message').textContent = 'Игра началась!';
+    game.originalText = 'Игра началась!';
     menu.showMainMenu();
   });
   document
-    .getElementById("new-game")
-    .addEventListener("click", () => game.init());
+  .getElementById("new-game")
+  .addEventListener("click", () => game.init());
   document
-    .getElementById("hint")
-    .addEventListener("click", () => game.showHint());
+  .getElementById("hint")
+  .addEventListener("click", () => game.showHint());
 });

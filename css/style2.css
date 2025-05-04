@@ -63,14 +63,24 @@ body {
   color: #22e44c;
 }
 
+input {
+  font-size: 16px;
+  margin: 10px;
+  padding: 10px;
+}
+
 .modal-buttons {
+  display: flex;
+  gap: 10px;
   margin-top: 5px;
+  justify-content: center;
 }
 
 #message {
   text-align: center;
   padding: 10px;
   margin: 10px;
+  
 }
 
 .points-game {
@@ -363,7 +373,7 @@ button:active {
   }
 } */
 
-@media (max-height: 600px) and (min-width: 350px) {
+@media (min-width: 350px) {
   .points-game,
   #message {
     font-size: 12px;
@@ -443,7 +453,7 @@ button:active {
   }
 } */
 
-@media (max-height: 600px) and (min-width: 450px) {
+@media (min-width: 450px) {
   .points-game,
   #message {
     font-size: 12px;
@@ -497,7 +507,7 @@ button:active {
   }
 }
 
-@media (max-height: 600px) and (min-width: 350px) {
+@media (min-width: 350px) {
   .points-game,
   #message {
     font-size: 12px;
@@ -548,6 +558,64 @@ button:active {
   .row-a,
   .row-b {
     gap: var(--card-gap-350px);
+  }
+
+  button {
+    padding: 8px 18px;
+  }
+}
+ 
+@media (min-width: 350px) {
+  .points-game,
+  #message {
+    font-size: 12px;
+    padding: 5px;
+    margin: 5px;
+  }
+
+  .row-1,
+  .row-2 {
+    margin: 10px 0px 30px;
+  }
+
+  .row-2 {
+    gap: var(--card-gap-450px);
+  }
+
+  .row-1 {
+    gap: calc(var(--card-width-350px) + var(--card-gap-450px) * 2);
+  }
+
+  .stock,
+  .card-placeholder,
+  .foundation,
+  .card {
+    max-width: var(--card-width-350px);
+    max-height: var(--card-height-350px);
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  #controls {
+    margin-top: 50vh;
+  }
+
+  .bottom-right {
+    display: none;
+  }
+
+  .card-placeholder,
+  .foundation {
+    border-radius: 5px;
+  }
+
+  .center {
+    font-size: 35px;
+  }
+
+  .row-a,
+  .row-b {
+    gap: var(--card-gap-450px);
   }
 
   button {
@@ -633,8 +701,8 @@ button:active {
   .card-placeholder,
   .foundation,
   .card {
-    width: var(--card-width-600px);
-    height: var(--card-height-600px);
+    min-width: var(--card-width-600px);
+    min-height: var(--card-height-600px);
     border-radius: 10px;
     box-sizing: border-box;
   }
@@ -681,8 +749,8 @@ button:active {
   .card-placeholder,
   .foundation,
   .card {
-    width: var(--card-width-1200px);
-    height: var(--card-height-1200px);
+    min-width: var(--card-width-1200px);
+    min-height: var(--card-height-1200px);
     border-radius: 10px;
     box-sizing: border-box;
   }
@@ -746,8 +814,8 @@ button:active {
   .card-placeholder,
   .foundation,
   .card {
-    width: var(--card-width-1200px);
-    height: var(--card-height-1200px);
+    min-width: var(--card-width-1200px);
+    min-height: var(--card-height-1200px);
     border-radius: 10px;
     box-sizing: border-box;
   }
@@ -819,8 +887,8 @@ button:active {
   .card-placeholder,
   .foundation,
   .card {
-    width: var(--card-width-1600px);
-    height: var(--card-height-1600px);
+    min-width: var(--card-width-1600px);
+    min-height: var(--card-height-1600px);
     border-radius: 10px;
     box-sizing: border-box;
   }
@@ -882,8 +950,8 @@ button:active {
   .card-placeholder,
   .foundation,
   .card {
-    width: var(--card-width-1600px);
-    height: var(--card-height-1600px);
+    min-width: var(--card-width-1600px);
+    min-height: var(--card-height-1600px);
     border-radius: 10px;
     box-sizing: border-box;
   }

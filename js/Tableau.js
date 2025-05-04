@@ -46,12 +46,15 @@ export class Tableau {
   }
 
   addCard(card) {
-    card.column = this.index;
+    card.indexTableau = this.index;
     card.position = this.cards.length;
+    card.parent = 'tableau';
     this.cards.push(card);
   }
 
   removeCard(card) {
+    console.log('удаление карты из массива tableau');
+    
     const index = this.cards.indexOf(card);
     if (index !== -1) {
       this.cards.splice(index, 1);

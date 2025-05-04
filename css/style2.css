@@ -38,7 +38,7 @@ body {
 }
 
 .info-container {
-  margin-top: 25px;
+  margin-top: 30px;
 }
 
 .modal {
@@ -293,120 +293,40 @@ button:active {
   transform: scale(0.98);
 }
 
-/* @media (min-height: 400px) {
-  #message,
-  .points-game {
+@media (min-width: 350px) {
+  .points-game,
+  #message {
+    font-size: 12px;
     padding: 5px;
     margin: 5px;
   }
-
-  #game-container {
-    margin: 10px 2px;
-    padding: 2px;
-  }
-
   .row-1,
   .row-2 {
-    margin: 5px 0px 20px;
+    margin: 10px 0px 30px;
   }
 
-  #controls {
-    margin-top: 35vh;
+  .row-2 {
+    gap: var(--card-gap-390px);
   }
 
-  button {
-    padding: 6px 15px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: #4caf50;
-    color: white;
-    border: none;
+  .row-1 {
+    gap: calc(var(--card-width-350px) + var(--card-gap-390px) * 2);
+  }
+
+  .stock,
+  .card-placeholder,
+  .foundation,
+  .card {
+    min-width: var(--card-width-350px);
+    min-height: var(--card-height-350px);
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s;
-  }
-}
-
-@media (min-height: 500px) {
-  #game-container {
-    margin: 10px 2px;
-    padding: 2px;
-  }
-
-  #controls {
-    margin-top: 35vh;
-  }
-
-  button {
-    padding: 6px 15px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s;
-  }
-}
-
-@media (min-height: 600px) {
-  #game-container {
-    margin: 10px 2px;
-    padding: 2px;
+    box-sizing: border-box;
   }
 
   #controls {
     margin-top: 45vh;
   }
 
-  button {
-    padding: 8px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s;
-  }
-} */
-
-@media (min-width: 350px) {
-  .points-game,
-  #message {
-    font-size: 12px;
-    padding: 5px;
-    margin: 5px;
-  }
-  .row-1,
-  .row-2 {
-    margin: 10px 0px 30px;
-  }
-
-  .row-2 {
-    gap: var(--card-gap-350px);
-  }
-
-  .row-1 {
-    gap: calc(var(--card-width-350px) + var(--card-gap-350px) * 2);
-  }
-
-  .stock,
-  .card-placeholder,
-  .foundation,
-  .card {
-    max-width: var(--card-width-350px);
-    max-height: var(--card-height-350px);
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-
-  #controls {
-    margin-top: 50vh;
-  }
-
   .bottom-right {
     display: none;
   }
@@ -422,200 +342,7 @@ button:active {
 
   .row-a,
   .row-b {
-    gap: var(--card-gap-350px);
-  }
-
-  button {
-    padding: 8px 18px;
-  }
-}
-
-/* @media (max-height: 600px) and (min-width: 450px) {
-  #game-container {
-    margin: 10px 2px;
-    padding: 2px;
-  }
-
-  #controls {
-    margin-top: 55vh;
-  }
-
-  button {
-    padding: 8px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s;
-  }
-} */
-
-@media (min-width: 450px) {
-  .points-game,
-  #message {
-    font-size: 12px;
-    padding: 5px;
-    margin: 5px;
-  }
-  .row-1,
-  .row-2 {
-    margin: 10px 0px 30px;
-  }
-
-  .row-2 {
-    gap: var(--card-gap-450px);
-  }
-
-  .row-1 {
-    gap: calc(var(--card-width-390px) + var(--card-gap-450px) * 2);
-  }
-
-  .stock,
-  .card-placeholder,
-  .foundation,
-  .card {
-    width: var(--card-width-390px);
-    height: var(--card-height-390px);
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  /* 
-  .bottom-right {
-    display: none;
-  } */
-
-  .card-placeholder,
-  .foundation {
-    border-radius: 5px;
-  }
-
-  .center {
-    /* margin: 40px 0px 40px; */
-    font-size: 45px;
-  }
-
-  .row-a,
-  .row-b {
-    gap: var(--card-gap-450px);
-  }
-
-  #controls {
-    margin-top: 45vh;
-  }
-}
-
-@media (min-width: 350px) {
-  .points-game,
-  #message {
-    font-size: 12px;
-    padding: 5px;
-    margin: 5px;
-  }
-
-  .row-1,
-  .row-2 {
-    margin: 10px 0px 30px;
-  }
-
-  .row-2 {
-    gap: var(--card-gap-350px);
-  }
-
-  .row-1 {
-    gap: calc(var(--card-width-350px) + var(--card-gap-350px) * 2);
-  }
-
-  .stock,
-  .card-placeholder,
-  .foundation,
-  .card {
-    max-width: var(--card-width-350px);
-    max-height: var(--card-height-350px);
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-
-  #controls {
-    margin-top: 50vh;
-  }
-
-  .bottom-right {
-    display: none;
-  }
-
-  .card-placeholder,
-  .foundation {
-    border-radius: 5px;
-  }
-
-  .center {
-    font-size: 45px;
-  }
-
-  .row-a,
-  .row-b {
-    gap: var(--card-gap-350px);
-  }
-
-  button {
-    padding: 8px 18px;
-  }
-}
- 
-@media (min-width: 350px) {
-  .points-game,
-  #message {
-    font-size: 12px;
-    padding: 5px;
-    margin: 5px;
-  }
-
-  .row-1,
-  .row-2 {
-    margin: 10px 0px 30px;
-  }
-
-  .row-2 {
-    gap: var(--card-gap-450px);
-  }
-
-  .row-1 {
-    gap: calc(var(--card-width-350px) + var(--card-gap-450px) * 2);
-  }
-
-  .stock,
-  .card-placeholder,
-  .foundation,
-  .card {
-    max-width: var(--card-width-350px);
-    max-height: var(--card-height-350px);
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-
-  #controls {
-    margin-top: 50vh;
-  }
-
-  .bottom-right {
-    display: none;
-  }
-
-  .card-placeholder,
-  .foundation {
-    border-radius: 5px;
-  }
-
-  .center {
-    font-size: 35px;
-  }
-
-  .row-a,
-  .row-b {
-    gap: var(--card-gap-450px);
+    gap: var(--card-gap-390px);
   }
 
   button {

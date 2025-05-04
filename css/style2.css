@@ -37,9 +37,9 @@ body {
   /* align-items: center; */
 }
 
-/* .info-container {
-  justify-content: center;
-} */
+.info-container {
+  margin-top: 25px;
+}
 
 .modal {
   position: fixed;

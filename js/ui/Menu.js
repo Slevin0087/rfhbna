@@ -1,5 +1,5 @@
-import { Settings } from './Settings.js';
-import { AudioManager } from './Audio.js';
+import { Settings } from "./Settings.js";
+import { AudioManager } from "./Audio.js";
 
 export class Menu {
   constructor(game) {
@@ -8,11 +8,33 @@ export class Menu {
     this.settings = document.getElementById("settings");
     this.shop = document.getElementById("shop");
     this.gameInterface = document.getElementById("game-interface");
+    this.faceBtn = document.getElementById("face-btn");
+    this.shirtBtn = document.getElementById("shirt-btn");
+    this.fonBtn = document.getElementById("fon-btn");
+
+    this.fonContainer = document.getElementById("fon-container");
+    this.faceContainer = document.getElementById("face-container");
+    this.shirtContainer = document.getElementById("shirt-container");
 
     this.initEventListeners();
   }
 
   initEventListeners() {
+    this.faceBtn.addEventListener("click", () => {
+      this.faceContainer.style.display = "flex";
+      this.shirtContainer.style.display = "none";
+      this.fonContainer.style.display = "none";
+    });
+    this.shirtBtn.addEventListener("click", () => {
+      this.shirtContainer.style.display = "flex";
+      this.faceContainer.style.display = "none";
+      this.fonContainer.style.display = "none";
+    });
+    this.fonBtn.addEventListener("click", () => {
+      this.fonContainer.style.display = "flex";
+      this.faceContainer.style.display = "none";
+      this.shirtContainer.style.display = "none";
+    });
     document.getElementById("new-game-btn").addEventListener("click", () => {
       this.hideAll();
       this.gameInterface.classList.remove("hidden");

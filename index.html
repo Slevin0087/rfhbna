@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/menu.css" />
     <link rel="stylesheet" href="css/settings.css" />
     <link rel="stylesheet" href="css/shop.css" />
+    <link rel="stylesheet" href="css/shopBackCards.css" />
   </head>
   <body>
     <div id="player-modal" class="modal">
@@ -67,11 +68,11 @@
         <div class="balance">Баланс: <span id="coins">0</span> монет</div>
       </div>
       <div class="choose-container">
-        <button class="btn-card-face btn">Лицо</button>
-        <button class="btn-card-shirt btn">Рубашка</button>
-        <button class="btn-card-fon btn">Фон</button>
+        <button class="btn-card-face btn" id="face-btn">Лицо</button>
+        <button class="btn-card-shirt btn" id="shirt-btn">Рубашка</button>
+        <button class="btn-card-fon btn" id="fon-btn">Фон</button>
       </div>
-      <div class="all-items-container">
+      <div class="all-items-container" id="face-container">
         <div class="item-container">
           <p>Классический</p>
           <div class="shop-card-container">
@@ -401,6 +402,62 @@
           </div>
           <button class="buy-btn" data-price="100">Купить (200)</button>
         </div>
+      </div>
+      <div class="all-items-container" id="shirt-container" style="display: none;">
+        <div class="item-container">
+          <p>Старые</p>
+          <div class="shop-card-container">
+            <div
+              class="item"
+              data-style="old-back"
+              id="old-back-skin-1"
+            >
+              <div
+                class="shop-card old-back-red-card shop-card-back"
+                data-suit="♥"
+                data-value="A"
+                data-color="red"
+              >
+                <span class="shop-card-top-left value-red old-back-red"
+                  >A♥</span
+                >
+                <span class="shop-card-center value-red old-back-red"
+                  >♥</span
+                >
+                <span class="shop-card-bottom-right value-red old-back-red"
+                  >A♥</span
+                >
+              </div>
+            </div>
+            <div
+              class="item"
+              data-style="old-back"
+              id="old-back-skin-2"
+            >
+              <div
+                class="shop-card old-back-black-card old-back shop-card-back"
+                data-suit="♣"
+                data-value="K"
+                data-color="black"
+              >
+                <span class="shop-card-top-left value-black old-back-black"
+                  >K♣</span
+                >
+                <span class="shop-card-center value-black old-back-black"
+                  >♣</span
+                >
+                <span
+                  class="shop-card-bottom-right value-black old-back-black"
+                  >K♣</span
+                >
+              </div>
+            </div>
+          </div>
+          <button class="buy-btn" data-price="100">Купить (200)</button>
+        </div>
+      </div>
+      <div class="all-items-container" id="fon-container" style="display: none;">
+          <button class="buy-btn" data-price="100">Купить (200)</button>
       </div>
     </div>
     <!-- Игровой интерфейс -->

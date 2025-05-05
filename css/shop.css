@@ -256,36 +256,6 @@ overflow: hidden;
 filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.4));
 }
 
-/* .wooden::before {
-  content: "";
-  position: absolute;
-  width: 15%;
-  height: 15%;
-  background: #5D2906;
-  border-radius: 50%;
-  top: 30%;
-  left: 25%;
-  box-shadow: 
-    2px 2px 0 #3d2b1e,
-    -1px -1px 0 rgba(255,255,255,0.1);
-} */
-
-.wooden::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,0.1) 0%,
-      rgba(255,255,255,0) 50%,
-      rgba(255,255,255,0.1) 100%
-    );
-  pointer-events: none;
-}
 .wooden-black {
   color: #3d2b1e;
   text-shadow: 

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Хусынка</title>
+    <!-- <link rel="stylesheet" href="css/style2.css" />
+    <link rel="stylesheet" href="css/menu.css" />
+    <link rel="stylesheet" href="css/settings.css" />
+    <link rel="stylesheet" href="css/shop.css" /> -->
+  </head>
+  <body>
+    <div id="player-modal" class="modal">
+      <div class="modal-content">
+        <h2 class="name-h2">Введите ваше имя</h2>
+        <input
+          type="text"
+          id="player-name"
+          placeholder="Игрок"
+          maxlength="12"
+        />
+        <div class="modal-buttons">
+          <button id="start-game">Начать игру</button>
+          <button id="skip-name">Пропустить</button>
+        </div>
+      </div>
+    </div>
+    <!-- Меню игры -->
+    <div id="game-menu" class="menu">
+      <h1>Хусынка</h1>
+      <button id="new-game-btn">Новая игра</button>
+      <button id="settings-btn">Настройки</button>
+      <button id="shop-btn">Магазин</button>
+      <button id="exit-btn">Выход</button>
+    </div>
+
+    <!-- Настройки -->
+    <div id="settings" class="settings hidden">
+      <h2>Настройки</h2>
+      <div class="setting-item">
+        <label
+          >Звуки: <input type="checkbox" id="sound-toggle" checked
+        /></label>
+      </div>
+      <div class="setting-item">
+        <label
+          >Сложность:
+          <select id="difficulty">
+            <option value="easy">Лёгкая</option>
+            <option value="normal" selected>Обычная</option>
+            <option value="hard">Сложная</option>
+          </select>
+        </label>
+      </div>
+      <button id="back-to-menu">Назад в меню</button>
+    </div>
+
+    <!-- Магазин -->
+    <!-- <div id="shop" class="shop hidden">
+      <div class="shop-head">
+        <button id="shop-back">Назад</button>
+        <h2>Магазин</h2>
+        <div class="balance">Баланс: <span id="coins">0</span> монет</div>
+      </div>
+      <div class="shop-items">
+        <div class="item" data-style="classic">
+          <div
+            class="shop-card"
+            data-suit="♠"
+            data-value="8"
+            data-color="black"
+          >
+            <span class="shop-card-top-left">8♠</span>
+            <span class="shop-card-center">♠</span>
+            <span class="shop-card-bottom-right">8♠</span>
+          </div> -->
+    <!-- <div class="card-preview classic"></div> -->
+    <!-- <p>Классический</p>
+          <button class="buy-btn" data-price="0">Выбрать</button>
+        </div>
+        <div class="item" data-id="skin1">
+          <div
+            class="shop-card"
+            data-suit="♠"
+            data-value="8"
+            data-color="black"
+          >
+            <span class="shop-card-top-left">8♠</span>
+            <span class="shop-card-center">♠</span>
+            <span class="shop-card-bottom-right">8♠</span>
+          </div>
+          <p>Ретро-карты</p>
+          <button class="buy-btn" data-price="100">Купить (100)</button>
+        </div> -->
+    <!-- Другие товары -->
+    <!-- Стиль 1 -->
+
+    <!-- Стиль 2 -->
+    <!-- <div class="item" data-style="neon">
+          <div
+            class="shop-card"
+            data-suit="♠"
+            data-value="8"
+            data-color="black"
+          >
+            <span class="shop-card-top-left">8♠</span>
+            <span class="shop-card-center">♠</span>
+            <span class="shop-card-bottom-right">8♠</span>
+          </div>
+          <p>Неоновый</p>
+          <button class="buy-btn" data-price="100">Купить (100)</button>
+        </div> -->
+    <!-- </div>
+    </div> -->
+    <!-- Добавляем контейнер для прокрутки и стрелки -->
+    <!-- Добавляем контейнер для прокрутки и стрелки -->
+    <div id="shop" class="shop hidden">
+      <div class="shop-head">
+        <button id="shop-back">Назад</button>
+        <h2>Магазин</h2>
+        <div class="balance">Баланс: <span id="coins">0</span> монет</div>
+      </div>
+      <div class="choose-container">
+        <button class="btn-card-face btn">Лицо</button>
+        <button class="btn-card-shirt btn">Рубашка</button>
+        <button class="btn-card-fon btn">Фон</button>
+      </div>
+      <!-- <div class="shop-scroll-container">
+        <button class="scroll-btn btn-left">←</button>
+
+        <div class="shop-items-wrapper">
+          <div class="shop-items">
+            <div class="item" data-style="classic" id="classic-skin">
+              <div
+                class="shop-card"
+                data-suit="♠"
+                data-value="8"
+                data-color="black"
+              >
+                <span class="shop-card-top-left">8♠</span>
+                <span class="shop-card-center">♠</span>
+                <span class="shop-card-bottom-right">8♠</span>
+              </div>
+              <p>Классический</p>
+              <button class="buy-btn" data-price="0">Выбрать</button>
+            </div>
+            <div class="item" data-id="skin1" id="retro-skin">
+              <div
+                class="shop-card"
+                data-suit="♠"
+                data-value="8"
+                data-color="black"
+              >
+                <span class="shop-card-top-left">8♠</span>
+                <span class="shop-card-center">♠</span>
+                <span class="shop-card-bottom-right">8♠</span>
+              </div>
+              <p>Ретро-карты</p>
+              <button class="buy-btn" data-price="100">Купить (100)</button>
+            </div>
+            <div class="item" data-style="neon" id="neon-skin">
+              <div
+                class="shop-card"
+                data-suit="♠"
+                data-value="8"
+                data-color="black"
+              >
+                <span class="shop-card-top-left">8♠</span>
+                <span class="shop-card-center">♠</span>
+                <span class="shop-card-bottom-right">8♠</span>
+              </div>
+              <p>Неоновый</p>
+              <button class="buy-btn" data-price="100">Купить (100)</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="scroll-btn btn-right">→</button>
+        <div class="scroll-container">
+          <div class="scroll-indicator">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+
+        </div>
+      </div> -->
+      
+    </div>
+    <!-- Игровой интерфейс -->
+    <div id="game-interface" class="hidden">
+      <div class="info-container" id="info-top">
+        <div id="message"></div>
+        <div class="points-game" id="points-in-game"></div>
+      </div>
+      <div id="game-container">
+        <div class="row-1" id="row">
+          <div class="row-a" id="stockDiv"></div>
+          <div class="row-b" id="foundationsDiv"></div>
+        </div>
+        <div class="row-2" id="tableausDiv"></div>
+        <div id="controls">
+          <button id="new-game">Новая игра</button>
+          <button id="hint">Подсказка</button>
+          <button id="menu-btn">Меню</button>
+        </div>
+      </div>
+    </div>
+    <!-- <div id="ingame-menu"> -->
+    <!-- <button id="hint">Подсказка</button> -->
+    <!-- </div> -->
+    <!-- </div> -->
+    <!-- <script type="module" src="js/main.js"></script> -->
+  </body>
+</html>

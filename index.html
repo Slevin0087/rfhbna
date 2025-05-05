@@ -59,64 +59,6 @@
     </div>
 
     <!-- Магазин -->
-    <!-- <div id="shop" class="shop hidden">
-      <div class="shop-head">
-        <button id="shop-back">Назад</button>
-        <h2>Магазин</h2>
-        <div class="balance">Баланс: <span id="coins">0</span> монет</div>
-      </div>
-      <div class="shop-items">
-        <div class="item" data-style="classic">
-          <div
-            class="shop-card"
-            data-suit="♠"
-            data-value="8"
-            data-color="black"
-          >
-            <span class="shop-card-top-left">8♠</span>
-            <span class="shop-card-center">♠</span>
-            <span class="shop-card-bottom-right">8♠</span>
-          </div> -->
-    <!-- <div class="card-preview classic"></div> -->
-    <!-- <p>Классический</p>
-          <button class="buy-btn" data-price="0">Выбрать</button>
-        </div>
-        <div class="item" data-id="skin1">
-          <div
-            class="shop-card"
-            data-suit="♠"
-            data-value="8"
-            data-color="black"
-          >
-            <span class="shop-card-top-left">8♠</span>
-            <span class="shop-card-center">♠</span>
-            <span class="shop-card-bottom-right">8♠</span>
-          </div>
-          <p>Ретро-карты</p>
-          <button class="buy-btn" data-price="100">Купить (100)</button>
-        </div> -->
-    <!-- Другие товары -->
-    <!-- Стиль 1 -->
-
-    <!-- Стиль 2 -->
-    <!-- <div class="item" data-style="neon">
-          <div
-            class="shop-card"
-            data-suit="♠"
-            data-value="8"
-            data-color="black"
-          >
-            <span class="shop-card-top-left">8♠</span>
-            <span class="shop-card-center">♠</span>
-            <span class="shop-card-bottom-right">8♠</span>
-          </div>
-          <p>Неоновый</p>
-          <button class="buy-btn" data-price="100">Купить (100)</button>
-        </div> -->
-    <!-- </div>
-    </div> -->
-    <!-- Добавляем контейнер для прокрутки и стрелки -->
-    <!-- Добавляем контейнер для прокрутки и стрелки -->
     <div id="shop" class="shop hidden">
       <div class="shop-head">
         <button id="shop-back">Назад</button>
@@ -128,68 +70,100 @@
         <button class="btn-card-shirt btn">Рубашка</button>
         <button class="btn-card-fon btn">Фон</button>
       </div>
-      <div class="shop-scroll-container">
-        <button class="scroll-btn btn-left">←</button>
-
-        <div class="shop-items-wrapper">
-          <div class="shop-items">
-            <!-- Ваши существующие item-элементы -->
-            <div class="item" data-style="classic" id="classic-skin">
+      <div class="all-items-container">
+        <div class="item-container">
+          <p>Классический</p>
+          <div class="shop-card-container">
+            <div class="item" data-style="classic" id="classic-skin-1">
               <div
                 class="shop-card"
-                data-suit="♠"
-                data-value="8"
-                data-color="black"
+                data-suit="♥"
+                data-value="A"
+                data-color="red"
               >
-                <span class="shop-card-top-left">8♠</span>
-                <span class="shop-card-center">♠</span>
-                <span class="shop-card-bottom-right">8♠</span>
+                <span class="shop-card-top-left value-red">A♥</span>
+                <span class="shop-card-center value-red">♥</span>
+                <span class="shop-card-bottom-right value-red">A♥</span>
               </div>
-              <p>Классический</p>
-              <button class="buy-btn" data-price="0">Выбрать</button>
             </div>
-            <div class="item" data-id="skin1" id="retro-skin">
+            <div class="item" data-style="classic" id="classic-skin-2">
               <div
                 class="shop-card"
-                data-suit="♠"
-                data-value="8"
+                data-suit="♣"
+                data-value="K"
                 data-color="black"
               >
-                <span class="shop-card-top-left">8♠</span>
-                <span class="shop-card-center">♠</span>
-                <span class="shop-card-bottom-right">8♠</span>
+                <span class="shop-card-top-left value-black">K♣</span>
+                <span class="shop-card-center value-black">♣</span>
+                <span class="shop-card-bottom-right value-black">K♣</span>
               </div>
-              <p>Ретро-карты</p>
-              <button class="buy-btn" data-price="100">Купить (100)</button>
             </div>
-            <div class="item" data-style="neon" id="neon-skin">
-              <div
-                class="shop-card"
-                data-suit="♠"
-                data-value="8"
-                data-color="black"
-              >
-                <span class="shop-card-top-left">8♠</span>
-                <span class="shop-card-center">♠</span>
-                <span class="shop-card-bottom-right">8♠</span>
-              </div>
-              <p>Неоновый</p>
-              <button class="buy-btn" data-price="100">Купить (100)</button>
+          </div>
+          <button class="buy-btn" data-price="0">Выбрать</button>
+        </div>
+        <div class="item-container">
+          <p>Ретро-карты</p>
+          <div class="shop-card-container">
+          <div class="item" data-style="retro" id="retro-skin-1">
+            <div
+              class="shop-card"
+              data-suit="♥"
+              data-value="A"
+              data-color="red"
+            >
+              <span class="shop-card-top-left value-red">A♥</span>
+              <span class="shop-card-center value-red">♥</span>
+              <span class="shop-card-bottom-right value-red">A♥</span>
+            </div>
+          
+          </div>
+          <div class="item" data-style="retro" id="retro-skin-2">
+            <div
+              class="shop-card"
+              data-suit="♣"
+              data-value="K"
+              data-color="black"
+            >
+              <span class="shop-card-top-left value-black">K♣</span>
+              <span class="shop-card-center value-black">♣</span>
+              <span class="shop-card-bottom-right value-black">K♣</span>
             </div>
           </div>
         </div>
-
-        <button class="scroll-btn btn-right">→</button>
-        <div class="scroll-container">
-          <div class="scroll-indicator">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
+        <button class="buy-btn" data-price="100">Купить (100)</button>
+        </div>
+        <div class="item-container">
+          <p>Неоновый</p>
+          <div class="shop-card-container">
+          <div class="item" data-style="neon" id="neon-skin-1">
+            <div
+              class="shop-card"
+              data-suit="♥"
+              data-value="A"
+              data-color="red"
+            >
+              <span class="shop-card-top-left value-red">A♥</span>
+              <span class="shop-card-center value-red">♥</span>
+              <span class="shop-card-bottom-right value-red">A♥</span>
+            </div>
+          
           </div>
-
+          <div class="item" data-style="neon" id="neon-skin-2">
+            <div
+              class="shop-card"
+              data-suit="♣"
+              data-value="K"
+              data-color="black"
+            >
+              <span class="shop-card-top-left value-black">K♣</span>
+              <span class="shop-card-center value-black">♣</span>
+              <span class="shop-card-bottom-right value-black">K♣</span>
+            </div>
+          </div>
+        </div>
+        <button class="buy-btn" data-price="100">Купить (100)</button>
         </div>
       </div>
-    </div>
     <!-- Игровой интерфейс -->
     <div id="game-interface" class="hidden">
       <div class="info-container" id="info-top">
@@ -209,10 +183,6 @@
         </div>
       </div>
     </div>
-    <!-- <div id="ingame-menu"> -->
-    <!-- <button id="hint">Подсказка</button> -->
-    <!-- </div> -->
-    <!-- </div> -->
     <script type="module" src="js/main.js"></script>
   </body>
 </html>

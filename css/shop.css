@@ -52,31 +52,33 @@
 
 .choose-container {
   display: flex;
-  gap: 50px;
+  gap: 5px;
   justify-content: center;
   font-size: 20px;
   margin: 10px;
 }
 
-.scroll-container {
-  width: 100%;
+.all-items-container {
   display: flex;
-  justify-content: center; /* Центрирование индикатора */
-}
-
-.shop-scroll-container {
-  display: flex;
+  gap: 100px;
   flex-wrap: wrap;
-  justify-content: center; /* Центрирование по горизонтали */
-  gap: 10px;
-  align-items: center;
+  justify-content: center;
 }
 
-.shop-items-wrapper {
-  overflow: hidden;
-  flex: 0 1 55%; /* Основное пространство для карт */
-  min-width: 100px; /* Минимальная ширина */
+.item-container {
   text-align: center;
+  padding: 5px;
+}
+
+p {
+  background-color: rgb(61, 106, 188);
+  color: black;
+  border-radius: 5px;
+}
+
+.shop-card-container {
+  display: flex;
+  gap: 5px;
 }
 
 .shop-items {
@@ -85,38 +87,6 @@
   gap: 20px;
   transition: transform 0.3s ease;
   padding: 10px 0;
-}
-
-.scroll-btn {
-  background: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 10%;
-  min-width: 50px;
-  min-height: 40px;
-  font-size: 20px;
-  cursor: pointer;
-  /* flex-shrink: 0; */
-  flex: 0 1 50px; /* Фиксированная ширина кнопок */
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.btn-left {
-  padding-left: 0;
-}
-
-.btn-right {
-  padding-right: 0;
-}
-
-.scroll-btn:hover {
-  background: #45a049;
-}
-
-.scroll-btn:disabled {
-  background: #cccccc;
-  cursor: not-allowed;
 }
 
 .shop-items {
@@ -129,24 +99,41 @@
   min-width: 100%;
 }
 
+.shop-card-top-left {
+  box-sizing: border-box;
+  display: block;
+  text-align: left;
+  padding-left: 5%;
+  padding-top: 3%;
+  font-size: 30px;
+}
+
+.shop-card-center {
+  font-size: 120px;
+}
+
+.shop-card-bottom-right {
+  box-sizing: border-box;
+  display: block;
+  padding-right: 5%;
+  padding-bottom: 3%;
+  margin-top: 20%;
+  font-size: 30px;
+  text-align: right;
+}
+
 .item {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   padding: 1rem;
   text-align: center;
   transition: transform 0.3s;
-  flex: 0 0 150px; /* Фиксированная ширина карточки */
+  /* flex: 0 0 150px; Фиксированная ширина карточки */
   scroll-snap-align: start;
 }
 
 .item:hover {
   transform: scale(1.05);
-}
-
-.item img {
-  width: 100%;
-  border-radius: 5px;
-  margin-bottom: 1rem;
 }
 
 .buy-btn {
@@ -156,10 +143,7 @@
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-}
-
-.buy-btn.owned {
-  background: #4caf50;
+  margin: 10px;
 }
 
 #shop-back {
@@ -176,27 +160,11 @@
   box-sizing: border-box;
 }
 
-.scroll-indicator {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 15px;
+.value-red {
+  color: red;
 }
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #ccc;
-  cursor: pointer;
-}
-
-.dot.active {
-  background: #4CAF50;
-}
-
-#neon-skin, #retro-skin {
-  display: none;
+.value-black {
+  color: black;
 }
 
 @media (min-width: 350px) {
@@ -211,7 +179,7 @@
     font-size: 1.5rem;
     margin-bottom: 1rem;
   }
-  
+
   .shop-items {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 0.5rem;
@@ -231,32 +199,6 @@
     margin: 0px 20px;
     background-color: white;
   }
-
-  .shop-card-top-left {
-    box-sizing: border-box;
-    display: block;
-    text-align: left;
-    padding-left: 5%;
-    padding-top: 3%;
-    font-size: 20px;
-    color: red;
-  }
-
-  .shop-card-center {
-    font-size: 100px;
-    color: red;
-  }
-
-  .shop-card-bottom-right {
-    box-sizing: border-box;
-    display: block;
-    padding-right: 5%;
-    padding-bottom: 3%;
-    margin-top: 20%;
-    font-size: 20px;
-    color: red;
-    text-align: right;
-  }
 }
 
 @media (min-width: 900px) {
@@ -267,32 +209,6 @@
     box-sizing: border-box;
     margin: 0px 20px;
     background-color: white;
-  }
-
-  .shop-card-top-left {
-    box-sizing: border-box;
-    display: block;
-    text-align: left;
-    padding-left: 5%;
-    padding-top: 3%;
-    font-size: 30px;
-    color: red;
-  }
-
-  .shop-card-center {
-    font-size: 120px;
-    color: red;
-  }
-
-  .shop-card-bottom-right {
-    box-sizing: border-box;
-    display: block;
-    padding-right: 5%;
-    padding-bottom: 3%;
-    margin-top: 20%;
-    font-size: 30px;
-    color: red;
-    text-align: right;
   }
 }
 
@@ -309,17 +225,6 @@
     /* margin-bottom: 1rem; */
   }
 
-  .shop-items-wrapper {
-    overflow: hidden;
-    flex: 0 1 20%; /* Основное пространство для карт */
-    min-width: 50px; /* Минимальная ширина */
-    text-align: center;
-  }
-
-  .item {
-    flex: 0 0 180px;
-  }
-
   .shop-card {
     min-width: var(--card-width-1200px);
     min-height: var(--card-height-1600px);
@@ -327,32 +232,6 @@
     box-sizing: border-box;
     margin: 0px 5px;
     background-color: white;
-  }
-
-  .shop-card-top-left {
-    box-sizing: border-box;
-    display: block;
-    text-align: left;
-    padding-left: 5%;
-    padding-top: 3%;
-    font-size: 30px;
-    color: red;
-  }
-
-  .shop-card-center {
-    font-size: 120px;
-    color: red;
-  }
-
-  .shop-card-bottom-right {
-    box-sizing: border-box;
-    display: block;
-    padding-right: 5%;
-    padding-bottom: 3%;
-    margin-top: 20%;
-    font-size: 30px;
-    color: red;
-    text-align: right;
   }
 }
 
@@ -376,10 +255,6 @@
     text-align: center;
   }
 
-  .item {
-    flex: 0 0 180px;
-  }
-
   .shop-card {
     min-width: var(--card-width-1200px);
     min-height: var(--card-height-1600px);
@@ -387,31 +262,5 @@
     box-sizing: border-box;
     margin: 0px 5px;
     background-color: white;
-  }
-
-  .shop-card-top-left {
-    box-sizing: border-box;
-    display: block;
-    text-align: left;
-    padding-left: 5%;
-    padding-top: 3%;
-    font-size: 30px;
-    color: red;
-  }
-
-  .shop-card-center {
-    font-size: 120px;
-    color: red;
-  }
-
-  .shop-card-bottom-right {
-    box-sizing: border-box;
-    display: block;
-    padding-right: 5%;
-    padding-bottom: 3%;
-    margin-top: 20%;
-    font-size: 30px;
-    color: red;
-    text-align: right;
   }
 }

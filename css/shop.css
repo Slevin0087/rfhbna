@@ -52,6 +52,7 @@
 
 .shop-items {
   display: grid;
+  justify-content: center;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 2rem;
   max-width: 800px;
@@ -118,7 +119,7 @@
   
   .shop-items {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 1rem;
+    gap: 0.5rem;
   }
 
   .item {

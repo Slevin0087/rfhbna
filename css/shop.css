@@ -227,46 +227,115 @@ box-shadow: 0 3px 10px rgb(0, 0, 0); */
   text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
 }
 
-.wooden {
-  background: 
-  /* Базовый цвет дерева */
-  linear-gradient(135deg, #c19a6b 0%, #8b5a2b 100%),
-  /* Текстура древесных волокон */
-  repeating-linear-gradient(
-    90deg,
-    rgba(0,0,0,0.05) 0px,
-    rgba(0,0,0,0.05) 1px,
-    transparent 1px,
-    transparent 3px
-  ),
-  /* Годичные кольца */
-  radial-gradient(
-    ellipse at center,
-    rgba(0,0,0,0) 60%,
-    rgba(0,0,0,0.1) 100%
+/* Общие стили для старых карт */
+.shop-card.old {
+  position: relative;
+  background: #f5f0e1;
+  border-radius: 5px;
+  box-shadow: 
+    0 2px 5px rgba(0,0,0,0.3),
+    inset 1px 1px 0 rgba(255,255,255,0.3),
+    inset -1px -1px 0 rgba(0,0,0,0.1);
+  
+  /* Текстура бумаги */
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  
+  /* Неровные края */
+  clip-path: polygon(
+    0 3%, 3% 0, 97% 0, 100% 3%, 
+    100% 97%, 97% 100%, 3% 100%, 0% 97%
   );
-border: 2px solid #5D2906;
-border-radius: 8px;
-box-shadow: 
-  inset 0 0 20px rgba(0,0,0,0.2),
-  0 4px 8px rgba(0,0,0,0.3);
-color: #3d2b1e;
-position: relative;
-overflow: hidden;
-filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.4));
+  
+  /* Эффект пожелтевшей бумаги */
+  filter: sepia(30%) brightness(95%);
 }
 
-.wooden-black {
-  color: #3d2b1e;
-  text-shadow: 
-    1px 1px 0 rgba(0,0,0,0.3),
-    -1px -1px 0 rgba(255,255,255,0.2);
+/* Специфичные стили для красных карт */
+.shop-card.old-red-card {
+  border: 1px solid #d5a6a6;
 }
-.wooden-red {
-  color: #8B0000;
-  text-shadow: 
-    1px 1px 0 #5D2906,
-    -1px -1px 0 rgba(255,255,255,0.2);
+
+/* Специфичные стили для черных карт */
+.shop-card.old-black-card {
+  border: 1px solid #a6a6a6;
+}
+
+/* Эффекты износа (общие) */
+.shop-card.old::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    /* Пятна */
+    radial-gradient(circle at 20% 30%, rgba(175,160,130,0.1) 0%, transparent 20%),
+    radial-gradient(circle at 80% 70%, rgba(175,160,130,0.1) 0%, transparent 20%),
+    /* Складки */
+    linear-gradient(45deg, transparent 48%, rgba(0,0,0,0.05) 49%, rgba(0,0,0,0.05) 51%, transparent 52%);
+}
+
+/* Стили для текста карт */
+.value-red.old-red {
+  color: #8b0000;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+}
+
+.value-black.old-black {
+  color: #3d2b1e;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+}
+
+/* Позиционирование элементов */
+.shop-card-top-left.old,
+.shop-card-bottom-right.old {
+  font-size: 1.2em;
+  position: absolute;
+  font-family: 'Old Standard TT', serif;
+}
+
+.shop-card-center.old {
+  font-size: 3em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Дополнительные эффекты при наведении */
+.shop-card.old:hover {
+  transform: rotate(1deg) scale(1.02);
+  box-shadow: 
+    0 5px 15px rgba(0,0,0,0.4),
+    inset 0 0 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+/* Эффект потертых уголков */
+.shop-card.old::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #f5f0e1;
+  top: 0;
+  left: 0;
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+  filter: brightness(110%);
+}
+
+/* Разные пятна для красных и черных карт */
+.shop-card.old-red-card::before {
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(200,100,100,0.1) 0%, transparent 25%),
+    linear-gradient(45deg, transparent 48%, rgba(0,0,0,0.05) 49%, transparent 52%);
+}
+
+.shop-card.old-black-card::before {
+  background: 
+    radial-gradient(circle at 70% 60%, rgba(100,100,100,0.1) 0%, transparent 25%),
+    linear-gradient(-45deg, transparent 48%, rgba(0,0,0,0.05) 49%, transparent 52%);
 }
 
 .shop-card-top-left {

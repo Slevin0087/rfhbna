@@ -138,6 +138,26 @@ p {
   text-shadow: 0 0 5px #66ccff, 0 0 10px #3399ff;
 }
 
+.metal {
+  background: 
+  linear-gradient(115deg, 
+    #ddd 0%, 
+    #fff 20%, 
+    #ddd 40%, 
+    #fff 60%, 
+    #ddd 80%, 
+    #fff 100%);
+box-shadow: 0 3px 10px rgb(0, 0, 0);
+}
+
+.metal-red {
+  text-shadow: 0 0 2px rgba(255, 0, 0, 0.882);
+}
+
+.metal-black {
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.868);
+}
+
 .shop-card-top-left {
   box-sizing: border-box;
   display: block;

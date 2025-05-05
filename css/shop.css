@@ -222,6 +222,7 @@ p {
 
   .all-items-container {
     gap: 10px;
+    margin-bottom: 60px;
   }
 
   .shop-items {

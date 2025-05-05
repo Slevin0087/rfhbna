@@ -59,7 +59,7 @@
     </div>
 
     <!-- Магазин -->
-    <div id="shop" class="shop hidden">
+    <!-- <div id="shop" class="shop hidden">
       <div class="shop-head">
         <button id="shop-back">Назад</button>
         <h2>Магазин</h2>
@@ -76,9 +76,9 @@
             <span class="shop-card-top-left">8♠</span>
             <span class="shop-card-center">♠</span>
             <span class="shop-card-bottom-right">8♠</span>
-          </div>
-          <!-- <div class="card-preview classic"></div> -->
-          <p>Классический</p>
+          </div> -->
+    <!-- <div class="card-preview classic"></div> -->
+    <!-- <p>Классический</p>
           <button class="buy-btn" data-price="0">Выбрать</button>
         </div>
         <div class="item" data-id="skin1">
@@ -94,12 +94,12 @@
           </div>
           <p>Ретро-карты</p>
           <button class="buy-btn" data-price="100">Купить (100)</button>
-        </div>
-        <!-- Другие товары -->
-        <!-- Стиль 1 -->
+        </div> -->
+    <!-- Другие товары -->
+    <!-- Стиль 1 -->
 
-        <!-- Стиль 2 -->
-        <div class="item" data-style="neon">
+    <!-- Стиль 2 -->
+    <!-- <div class="item" data-style="neon">
           <div
             class="shop-card"
             data-suit="♠"
@@ -112,10 +112,79 @@
           </div>
           <p>Неоновый</p>
           <button class="buy-btn" data-price="100">Купить (100)</button>
+        </div> -->
+    <!-- </div>
+    </div> -->
+    <!-- Добавляем контейнер для прокрутки и стрелки -->
+    <!-- Добавляем контейнер для прокрутки и стрелки -->
+    <div id="shop" class="shop hidden">
+      <div class="shop-head">
+        <button id="shop-back">Назад</button>
+        <h2>Магазин</h2>
+        <div class="balance">Баланс: <span id="coins">0</span> монет</div>
+      </div>
+      <div class="shop-scroll-container">
+        <button class="scroll-btn left">←</button>
+
+        <div class="shop-items-wrapper">
+          <div class="shop-items">
+            <!-- Ваши существующие item-элементы -->
+            <div class="item" data-style="classic" id="classic-skin">
+              <div
+                class="shop-card"
+                data-suit="♠"
+                data-value="8"
+                data-color="black"
+              >
+                <span class="shop-card-top-left">8♠</span>
+                <span class="shop-card-center">♠</span>
+                <span class="shop-card-bottom-right">8♠</span>
+              </div>
+              <p>Классический</p>
+              <button class="buy-btn" data-price="0">Выбрать</button>
+            </div>
+            <div class="item" data-id="skin1" id="retro-skin">
+              <div
+                class="shop-card"
+                data-suit="♠"
+                data-value="8"
+                data-color="black"
+              >
+                <span class="shop-card-top-left">8♠</span>
+                <span class="shop-card-center">♠</span>
+                <span class="shop-card-bottom-right">8♠</span>
+              </div>
+              <p>Ретро-карты</p>
+              <button class="buy-btn" data-price="100">Купить (100)</button>
+            </div>
+            <div class="item" data-style="neon" id="neon-skin">
+              <div
+                class="shop-card"
+                data-suit="♠"
+                data-value="8"
+                data-color="black"
+              >
+                <span class="shop-card-top-left">8♠</span>
+                <span class="shop-card-center">♠</span>
+                <span class="shop-card-bottom-right">8♠</span>
+              </div>
+              <p>Неоновый</p>
+              <button class="buy-btn" data-price="100">Купить (100)</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="scroll-btn right">→</button>
+        <div class="scroll-container">
+          <div class="scroll-indicator">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+
         </div>
       </div>
     </div>
-
     <!-- Игровой интерфейс -->
     <div id="game-interface" class="hidden">
       <div class="info-container" id="info-top">

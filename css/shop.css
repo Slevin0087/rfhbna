@@ -50,13 +50,66 @@
   align-items: center;
 }
 
+.scroll-container {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Центрирование индикатора */
+}
+
+.shop-scroll-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Центрирование по горизонтали */
+  gap: 10px;
+  align-items: center;
+}
+
+.shop-items-wrapper {
+  overflow: hidden;
+  flex: 0 1 55%; /* Основное пространство для карт */
+  min-width: 100px; /* Минимальная ширина */
+  text-align: center;
+}
+
 .shop-items {
-  display: grid;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  transition: transform 0.3s ease;
+  padding: 10px 0;
+}
+
+.scroll-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 10%;
+  width: 40px;
+  height: 30px;
+  font-size: 20px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.scroll-btn {
+  flex: 0 0 40px; /* Фиксированная ширина кнопок */
+}
+.scroll-btn:hover {
+  background: #45a049;
+}
+
+.scroll-btn:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.shop-items {
+  /* display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 2rem;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 auto; */
+  min-width: 100%;
 }
 
 .item {
@@ -65,6 +118,8 @@
   padding: 1rem;
   text-align: center;
   transition: transform 0.3s;
+  flex: 0 0 150px; /* Фиксированная ширина карточки */
+  scroll-snap-align: start;
 }
 
 .item:hover {
@@ -102,6 +157,29 @@
   border-radius: 5px;
   cursor: pointer;
   box-sizing: border-box;
+}
+
+.scroll-indicator {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #4CAF50;
+}
+
+#neon-skin, #retro-skin {
+  display: none;
 }
 
 @media (min-width: 350px) {
@@ -171,6 +249,126 @@
     border-radius: 10px;
     box-sizing: border-box;
     margin: 0px 20px;
+    background-color: white;
+  }
+
+  .shop-card-top-left {
+    box-sizing: border-box;
+    display: block;
+    text-align: left;
+    padding-left: 5%;
+    padding-top: 3%;
+    font-size: 30px;
+    color: red;
+  }
+
+  .shop-card-center {
+    font-size: 120px;
+    color: red;
+  }
+
+  .shop-card-bottom-right {
+    box-sizing: border-box;
+    display: block;
+    padding-right: 5%;
+    padding-bottom: 3%;
+    margin-top: 20%;
+    font-size: 30px;
+    color: red;
+    text-align: right;
+  }
+}
+
+@media (min-width: 1200px) {
+  .shop-head {
+    display: flex;
+    gap: 10rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    align-items: center;
+  }
+  .shop h2 {
+    font-size: 1.5rem;
+    /* margin-bottom: 1rem; */
+  }
+
+  .shop-items-wrapper {
+    overflow: hidden;
+    flex: 0 1 20%; /* Основное пространство для карт */
+    min-width: 50px; /* Минимальная ширина */
+    text-align: center;
+  }
+
+  .item {
+    flex: 0 0 180px;
+  }
+
+  .shop-card {
+    min-width: var(--card-width-1200px);
+    min-height: var(--card-height-1600px);
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin: 0px 5px;
+    background-color: white;
+  }
+
+  .shop-card-top-left {
+    box-sizing: border-box;
+    display: block;
+    text-align: left;
+    padding-left: 5%;
+    padding-top: 3%;
+    font-size: 30px;
+    color: red;
+  }
+
+  .shop-card-center {
+    font-size: 120px;
+    color: red;
+  }
+
+  .shop-card-bottom-right {
+    box-sizing: border-box;
+    display: block;
+    padding-right: 5%;
+    padding-bottom: 3%;
+    margin-top: 20%;
+    font-size: 30px;
+    color: red;
+    text-align: right;
+  }
+}
+
+@media (min-width: 1900px) {
+  .shop-head {
+    display: flex;
+    gap: 10rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    align-items: center;
+  }
+  .shop h2 {
+    font-size: 1.5rem;
+    /* margin-bottom: 1rem; */
+  }
+
+  .shop-items-wrapper {
+    overflow: hidden;
+    flex: 0 1 10%; /* Основное пространство для карт */
+    min-width: 50px; /* Минимальная ширина */
+    text-align: center;
+  }
+
+  .item {
+    flex: 0 0 180px;
+  }
+
+  .shop-card {
+    min-width: var(--card-width-1200px);
+    min-height: var(--card-height-1600px);
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin: 0px 5px;
     background-color: white;
   }
 

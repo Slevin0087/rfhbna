@@ -180,34 +180,43 @@ p {
     margin-bottom: 1rem;
   }
 
+  .all-items-container {
+    gap: 10px;
+  }
+
   .shop-items {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 0.5rem;
   }
 
   .item {
-    padding: 1rem;
+    padding: 0.5rem;
     text-align: center;
-    width: 140px;
+    min-width: 150px;
   }
 
   .shop-card {
-    min-width: var(--card-width-390px);
+    min-width: var(--card-width-1200px);
     min-height: var(--card-height-600px);
     border-radius: 10px;
     box-sizing: border-box;
-    margin: 0px 20px;
+    /* margin: 0px 5px; */
     background-color: white;
   }
 }
 
 @media (min-width: 900px) {
+  .item {
+    padding: 0.5rem;
+    min-width: 190px;
+  }
+
   .shop-card {
-    min-width: var(--card-width-1200px);
+    min-width: var(--card-width-1600px);
     min-height: var(--card-height-1600px);
     border-radius: 10px;
     box-sizing: border-box;
-    margin: 0px 20px;
+    margin: 0px 10px;
     background-color: white;
   }
 }
@@ -235,6 +244,12 @@ p {
   }
 }
 
+@media (min-width: 1600px) {
+  .all-items-container {
+    gap: 50px;
+  }
+}
+
 @media (min-width: 1900px) {
   .shop-head {
     display: flex;
@@ -243,9 +258,14 @@ p {
     margin-bottom: 2rem;
     align-items: center;
   }
+
   .shop h2 {
     font-size: 1.5rem;
     /* margin-bottom: 1rem; */
+  }
+
+  .all-items-container {
+    gap: 50px;
   }
 
   .shop-items-wrapper {

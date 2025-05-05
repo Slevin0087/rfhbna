@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+
     const shopItems = document.querySelector('.shop-items');
     const scrollLeftBtn = document.querySelector('.scroll-btn.left');
     const scrollRightBtn = document.querySelector('.scroll-btn.right');
@@ -31,4 +31,3 @@ document.addEventListener('DOMContentLoaded', () => {
   
     // Адаптация при изменении размера окна
     window.addEventListener('resize', updateScrollButtons);
-  });

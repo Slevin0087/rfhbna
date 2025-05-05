@@ -84,15 +84,24 @@
   color: white;
   border: none;
   border-radius: 10%;
-  width: 40px;
-  height: 30px;
+  min-width: 50px;
+  min-height: 40px;
   font-size: 20px;
   cursor: pointer;
-  flex-shrink: 0;
+  /* flex-shrink: 0; */
+  flex: 0 1 50px; /* Фиксированная ширина кнопок */
+  text-align: center;
+  box-sizing: border-box;
 }
-.scroll-btn {
-  flex: 0 0 40px; /* Фиксированная ширина кнопок */
+
+.btn-left {
+  padding-left: 0;
 }
+
+.btn-right {
+  padding-right: 0;
+}
+
 .scroll-btn:hover {
   background: #45a049;
 }

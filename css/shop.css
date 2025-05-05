@@ -1,20 +1,53 @@
+:root {
+  --card-width-350px: 40px;
+  --card-height-350px: 60px;
+  --card-gap-350px: 2px;
+  --card-width-390px: 50px;
+  --card-height-390px: 70px;
+  --card-gap-390px: 10px;
+  --card-gap-450px: 10px;
+  --card-width-600px: 70px;
+  --card-height-600px: 90px;
+  --card-gap-600px: 10px;
+  --card-width-1200px: 100px;
+  --card-height-1200px: 150px;
+  --card-gap-1200px: 15px;
+  --card-width-1600px: 150px;
+  --card-height-1600px: 250px;
+}
+
 .shop {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background: linear-gradient(135deg, #1a3a1a, #0a5a2a);
   z-index: 1000;
-  padding: 2rem;
+  padding: 1rem;
   color: white;
   overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.shop-head {
+  display: flex;
+  gap: 10rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  align-items: center;
 }
 
 .shop h2 {
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 2rem;
+}
+
+.balance {
+  display: flex;
+  gap: 0.2rem;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .shop-items {
@@ -58,11 +91,51 @@
 
 #shop-back {
   display: block;
-  margin: 2rem auto 0;
-  padding: 1rem 2rem;
+  width: 10rem;
+  height: 3rem;
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
   background: #f44336;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  box-sizing: border-box;
+}
+
+@media (min-width: 900px) {
+  .shop-card {
+    min-width: var(--card-width-1200px);
+    min-height: var(--card-height-1600px);
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin: 0px 20px;
+    background-color: white;
+  }
+
+  .shop-card-top-left {
+    box-sizing: border-box;
+    display: block;
+    text-align: left;
+    padding-left: 5%;
+    padding-top: 3%;
+    font-size: 30px;
+    color: red;
+  }
+
+  .shop-card-center {
+    font-size: 120px;
+    color: red;
+  }
+
+  .shop-card-bottom-right {
+    box-sizing: border-box;
+    display: block;
+    padding-right: 5%;
+    padding-bottom: 3%;
+    margin-top: 20%;
+    font-size: 30px;
+    color: red;
+    text-align: right;
+  }
 }

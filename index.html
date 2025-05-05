@@ -16,7 +16,12 @@
     <div id="player-modal" class="modal">
       <div class="modal-content">
         <h2 class="name-h2">Введите ваше имя</h2>
-        <input type="text" id="player-name" placeholder="Игрок" maxlength="12">
+        <input
+          type="text"
+          id="player-name"
+          placeholder="Игрок"
+          maxlength="12"
+        />
         <div class="modal-buttons">
           <button id="start-game">Начать игру</button>
           <button id="skip-name">Пропустить</button>
@@ -55,17 +60,60 @@
 
     <!-- Магазин -->
     <div id="shop" class="shop hidden">
-      <h2>Магазин</h2>
+      <div class="shop-head">
+        <button id="shop-back">Назад</button>
+        <h2>Магазин</h2>
+        <div class="balance">Баланс: <span id="coins">0</span> монет</div>
+      </div>
       <div class="shop-items">
+        <div class="item" data-style="classic">
+          <div
+            class="shop-card"
+            data-suit="♠"
+            data-value="8"
+            data-color="black"
+          >
+            <span class="shop-card-top-left">8♠</span>
+            <span class="shop-card-center">♠</span>
+            <span class="shop-card-bottom-right">8♠</span>
+          </div>
+          <!-- <div class="card-preview classic"></div> -->
+          <p>Классический</p>
+          <button class="buy-btn" data-price="0">Выбрать</button>
+        </div>
         <div class="item" data-id="skin1">
-          <img src="assets/skins/skin1.png" alt="Скин 1" />
+          <div
+            class="shop-card"
+            data-suit="♠"
+            data-value="8"
+            data-color="black"
+          >
+            <span class="shop-card-top-left">8♠</span>
+            <span class="shop-card-center">♠</span>
+            <span class="shop-card-bottom-right">8♠</span>
+          </div>
           <p>Ретро-карты</p>
           <button class="buy-btn" data-price="100">Купить (100)</button>
         </div>
         <!-- Другие товары -->
+        <!-- Стиль 1 -->
+
+        <!-- Стиль 2 -->
+        <div class="item" data-style="neon">
+          <div
+            class="shop-card"
+            data-suit="♠"
+            data-value="8"
+            data-color="black"
+          >
+            <span class="shop-card-top-left">8♠</span>
+            <span class="shop-card-center">♠</span>
+            <span class="shop-card-bottom-right">8♠</span>
+          </div>
+          <p>Неоновый</p>
+          <button class="buy-btn" data-price="100">Купить (100)</button>
+        </div>
       </div>
-      <div class="balance">Баланс: <span id="coins">0</span> монет</div>
-      <button id="shop-back">Назад</button>
     </div>
 
     <!-- Игровой интерфейс -->

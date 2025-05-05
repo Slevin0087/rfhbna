@@ -63,6 +63,7 @@
   gap: 100px;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 30px;
 }
 
 .item-container {
@@ -182,6 +183,7 @@ p {
   cursor: pointer;
   font-weight: bold;
   margin: 10px;
+  color: black;
 }
 
 #shop-back {

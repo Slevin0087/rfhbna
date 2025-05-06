@@ -8,15 +8,16 @@ export class Shop {
   }
 
   initEventListeners() {
+    this.handleByBtns();
+  }
+
+  handleByBtns() {
     document.querySelectorAll(".buy-btn").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        console.log('e:', e);
-        
+      btn.addEventListener("click", (e) => {        
         const dataStyle = e.target.dataset.fonBtn;
         if (dataStyle) {
-          let bd = document.querySelector('body').style;
-          bd.background = `url(assets/shop/fons/${dataStyle}) no-repeat center center fixed`;
-          console.log('bd:', bd);
+          const bodyStyle = document.querySelector('body').style;
+          bodyStyle.background = `url(assets/shop/fons/${dataStyle}) no-repeat center center fixed`;
           e.target.textContent = 'Куплено'
           if (dataStyle === 'fon_3.jpg') {
             document.getElementById('message').style.color = 'black';
@@ -27,11 +28,10 @@ export class Shop {
           }
         }
         // this.buyItem(itemId);
-        console.log('dataStyle:', dataStyle);
       });
     });
   }
-
+  
   buyItem(itemId) {
     const item = this.items.find((i) => i.id === itemId);
     const balance = parseInt(localStorage.getItem("gameCoins") || 0);

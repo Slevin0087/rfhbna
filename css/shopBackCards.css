@@ -1,22 +1,22 @@
 :root {
-  --card-width-350px: 40px;
-  --card-height-350px: 60px;
-  --card-gap-350px: 2px;
-  --card-width-390px: 50px;
-  --card-height-390px: 70px;
-  --card-gap-390px: 10px;
-  --card-gap-450px: 10px;
-  --card-width-600px: 70px;
-  --card-height-600px: 90px;
-  --card-gap-600px: 10px;
-  --card-width-1200px: 100px;
-  --card-height-1200px: 150px;
-  --card-gap-1200px: 15px;
-  --card-width-1600px: 150px;
-  --card-height-1600px: 250px;
+  --shopShirt-card-width-350px: 40px;
+  --shopShirt-card-height-350px: 60px;
+  --shopShirt-card-gap-350px: 2px;
+  --shopShirt-card-width-390px: 50px;
+  --shopShirt-card-height-390px: 70px;
+  --shopShirt-card-gap-390px: 10px;
+  --shopShirt-card-gap-450px: 10px;
+  --shopShirt-card-width-600px: 70px;
+  --shopShirt-card-height-600px: 90px;
+  --shopShirt-card-gap-600px: 10px;
+  --shopShirt-card-width-1200px: 100px;
+  --shopShirt-card-height-1200px: 150px;
+  --shopShirt-card-gap-1200px: 15px;
+  --shopShirt-card-width-1600px: 150px;
+  --shopShirt-card-height-1600px: 250px;
 }
 
-.shopSirt-card-back {
+.shopShirt-card-back {
   color: transparent !important;
 }
 .old-back-red-card,

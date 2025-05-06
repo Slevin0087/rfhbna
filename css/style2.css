@@ -13,6 +13,9 @@
   --card-width-1200px: 100px;
   --card-height-1200px: 150px;
   --card-gap-1200px: 15px;
+  --card-width-1400px: 100px;
+  --card-height-1400px: 200px;
+  --card-gap-1400px: 15px;
   --card-width-1600px: 150px;
   --card-height-1600px: 200px;
 }
@@ -644,7 +647,7 @@ button:active {
   }
 
   #controls {
-    margin-top: 42vh;
+    margin-top: 35vh;
   }
 }
 
@@ -711,6 +714,6 @@ button:active {
   }
 
   #controls {
-    margin-top: 40vh;
+    margin-top: 35vh;
   }
 }

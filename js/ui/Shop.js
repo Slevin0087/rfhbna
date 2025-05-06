@@ -15,9 +15,16 @@ export class Shop {
         const dataStyle = e.target.dataset.fonBtn;
         if (dataStyle) {
           let bd = document.querySelector('body').style;
-          bd.background = "url(assets/shop/fons/fon_1.jpg) no-repeat center center fixed";
+          bd.background = `url(assets/shop/fons/${dataStyle}) no-repeat center center fixed`;
           console.log('bd:', bd);
-          
+          e.target.textContent = 'Куплено'
+          if (dataStyle === 'fon_3.jpg') {
+            document.getElementById('message').style.color = 'black';
+            document.getElementById('points-in-game').style.color = 'black';
+            document.getElementById('new-game').style.color = 'black';
+            document.getElementById('hint').style.color = 'black';
+            document.getElementById('menu-btn').style.color = 'black';
+          }
         }
         // this.buyItem(itemId);
         console.log('dataStyle:', dataStyle);

@@ -33,12 +33,21 @@ body {
   height: 100vh;
   /* box-sizing: border-box; */
   touch-action: manipulation;
-  background-color: #076324;
+  /* background-color: #3b0763; */
   color: white;
   overflow: hidden;
   /* justify-content: center; */
   /* align-items: center; */
-  background: url('../assets/shop/fons/fon_1.jpg') no-repeat center center fixed;
+  /* background: url('../assets/shop/fons/fon_1.jpg') no-repeat center center fixed; */
+  background-color: #333;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.05),
+      rgba(255,255,255,0.05) 1px,
+      transparent 1px,
+      transparent 5px
+    );
 }
 
 .info-container {
@@ -154,7 +163,7 @@ input {
 .card-placeholder,
 .foundation {
   position: relative;
-  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border: 2px dashed rgb(255, 255, 255);
 }
 
 .card {
@@ -299,9 +308,6 @@ button:active {
 }
 
 @media (min-width: 350px) {
-  /* body {
-    background: url('../assets/shop/fons/fon_1_350.jpg')
-  } */
   .points-game,
   #message {
     font-size: 12px;
@@ -492,7 +498,7 @@ button:active {
 
   .card-placeholder,
   .foundation {
-    border: 5px dashed rgba(255, 255, 255, 0.3);
+    border: 5px dashed rgb(255, 255, 255);
   }
 
   .card {
@@ -524,8 +530,9 @@ button:active {
 
 @media (min-width: 1200px) {
   .info-container {
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
+    margin-top: 10px;
   }
   .points-game,
   #message {
@@ -557,7 +564,7 @@ button:active {
 
   .card-placeholder,
   .foundation {
-    border: 5px dashed rgba(255, 255, 255, 0.3);
+    border: 5px dashed rgb(255, 255, 255);
   }
 
   .card {
@@ -588,10 +595,10 @@ button:active {
 }
 
 @media (min-width: 1600px) {
-  .info-container {
+  /* .info-container {
     display: flex;
     justify-content: center;
-  }
+  } */
 
   .points-game,
   #message {
@@ -656,11 +663,11 @@ button:active {
 }
 
 @media (min-width: 1900px) {
-  .info-container {
+  /* .info-container {
     display: flex;
     justify-content: center;
     margin: 5px 0;
-  }
+  } */
 
   #game-container {
     margin-top: 5px;

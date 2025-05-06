@@ -10,8 +10,17 @@ export class Shop {
   initEventListeners() {
     document.querySelectorAll(".buy-btn").forEach((btn) => {
       btn.addEventListener("click", (e) => {
-        const itemId = e.target.closest(".item").dataset.id;
-        this.buyItem(itemId);
+        console.log('e:', e);
+        
+        const dataStyle = e.target.dataset.fonBtn;
+        if (dataStyle) {
+          let bd = document.querySelector('body').style;
+          bd.background = "url(assets/shop/fons/fon_1.jpg) no-repeat center center fixed";
+          console.log('bd:', bd);
+          
+        }
+        // this.buyItem(itemId);
+        console.log('dataStyle:', dataStyle);
       });
     });
   }

@@ -38,6 +38,7 @@ body {
   overflow: hidden;
   /* justify-content: center; */
   /* align-items: center; */
+  background: url('../assets/shop/fons/fon_1.jpg') no-repeat center center fixed;
 }
 
 .info-container {
@@ -298,6 +299,9 @@ button:active {
 }
 
 @media (min-width: 350px) {
+  /* body {
+    background: url('../assets/shop/fons/fon_1_350.jpg')
+  } */
   .points-game,
   #message {
     font-size: 12px;

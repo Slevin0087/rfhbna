@@ -263,9 +263,8 @@ export class Game {
 
     // 2. Проверяем Tableau
     for (let i = 0; i < this.tableaus.length; i++) {
-      console.log('Проверяем Tableau');
+      console.log("Проверяем Tableau");
       if (this.tableaus[i].canAccept(card)) {
-        
         this.moveCardToTableau(card, i);
         this.incrementPoints(Config.pointsForTableaue);
         return;
@@ -433,13 +432,11 @@ export class Game {
     for (let i = 0; i < this.tableaus.length; i++) {
       const index = this.tableaus[i].cards.indexOf(card);
       if (index !== -1) {
-       
         // Удаляем карту и все карты выше неё (если это стопка)
-        const removedCards = this.tableaus[i].cards.splice(index);       
+        const removedCards = this.tableaus[i].cards.splice(index);
         if (removedCards.length === 1) {
           // this.tableaus[i].removeCard(card);
           if (nameToContainer === "tableau") {
-            
             this.tableaus[indexToContainer].addCard(card);
             // this.tableaus[indexToContainer].element.appendChild(card.cardEl);
             this.tableaus[i].updateCardPositions();
@@ -455,11 +452,10 @@ export class Game {
           console.log("попытка перемещения больше одной карты в foundation");
           this.moveStockForFoundation = true;
           removedCards.forEach((card) => {
-
             this.tableaus[i].addCard(card);
             // Если перемещали стопку, нужно обновить позиции оставшихся карт
             this.tableaus[i].updateCardPositions();
-          })
+          });
           this.noMove();
           return;
         } else if (removedCards.length > 1 && nameToContainer === "tableau") {
@@ -507,15 +503,23 @@ export class Game {
 
   noMove() {
     this.messageEl.textContent = Config.originalInfoText;
+    this.messageEl.style.color = "red";
     this.audio.play("info");
-    setTimeout(() => (this.messageEl.textContent = this.originalText), 1500);
+    setTimeout(() => {
+      this.messageEl.textContent = this.originalText;
+      this.messageEl.style.color = "black";
+    }, 1500);
   }
 
   showHint() {
     if (this.win) return;
     if (this.poinsGame < Config.pointsForHint) {
       this.messageEl.textContent = Config.originalHintText;
-      setTimeout(() => (this.messageEl.textContent = this.originalText), 3000);
+      this.messageEl.style.color = "red";
+      setTimeout(() => {
+        this.messageEl.textContent = this.originalText;
+        this.messageEl.style.color = "black";
+      }, 3000);
       return;
     }
     this.decrementPoints(Config.pointsForHint);
@@ -531,6 +535,7 @@ export class Game {
           this.highlightFoundation(i);
           this.messageEl.textContent =
             "Можно переместить карту из стока в foundation";
+            this.messageEl.style.color = "yellow";
           this.setHintTimeout();
           return;
         }
@@ -544,6 +549,7 @@ export class Game {
           this.messageEl.textContent = `Можно переместить карту из стока в столбец ${
             i + 1
           }`;
+          this.messageEl.style.color = "yellow";
           this.setHintTimeout();
           return;
         }
@@ -564,6 +570,7 @@ export class Game {
             this.messageEl.textContent = `Можно переместить карту из столбца ${
               i + 1
             } в foundation`;
+            this.messageEl.style.color = "yellow";
             this.setHintTimeout();
             return;
           }
@@ -577,6 +584,7 @@ export class Game {
             this.messageEl.textContent = `Можно переместить карту из столбца ${
               i + 1
             } в столбец ${j + 1}`;
+            this.messageEl.style.color = "yellow";
             this.setHintTimeout();
             return;
           }
@@ -598,6 +606,7 @@ export class Game {
             this.messageEl.textContent = `Можно переместить карту из foundation в столбец ${
               j + 1
             }`;
+            this.messageEl.style.color = "yellow";
             this.setHintTimeout();
             return;
           }
@@ -607,6 +616,7 @@ export class Game {
 
     this.messageEl.textContent =
       "Подсказка: нет доступных ходов, попробуйте раздать карты из стока";
+    this.messageEl.style.color = "red";
     this.setHintTimeout();
   }
 
@@ -669,6 +679,7 @@ export class Game {
     this.hintTimeout = setTimeout(() => {
       this.clearHint();
       this.messageEl.textContent = this.originalText;
+      this.messageEl.style.color = "black";
     }, 3000);
   }
 

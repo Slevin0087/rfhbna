@@ -18,14 +18,7 @@ export class Shop {
         if (dataStyle) {
           const bodyStyle = document.querySelector('body').style;
           bodyStyle.background = `url(assets/shop/fons/${dataStyle}) no-repeat center center fixed`;
-          e.target.textContent = 'Куплено'
-          if (dataStyle === 'fon_3.jpg') {
-            document.getElementById('message').style.color = 'black';
-            document.getElementById('points-in-game').style.color = 'black';
-            document.getElementById('new-game').style.color = 'black';
-            document.getElementById('hint').style.color = 'black';
-            document.getElementById('menu-btn').style.color = 'black';
-          }
+          e.target.textContent = 'Куплено';
         }
         // this.buyItem(itemId);
       });

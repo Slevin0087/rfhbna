@@ -93,7 +93,7 @@ input {
   text-align: center;
   padding: 10px;
   margin: 10px;
-  
+  color: black;
 }
 
 .points-game {
@@ -101,6 +101,7 @@ input {
   /* align-items: center; */
   padding: 10px;
   margin: 10px;
+  color: black;
 }
 
 #game-container {
@@ -142,6 +143,10 @@ input {
   flex-wrap: wrap;
   margin-bottom: 20px;
   margin-top: 50vh;
+}
+
+.controls-btn {
+  color: black;
 }
 
 .stock,

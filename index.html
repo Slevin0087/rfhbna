@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/shopBackCards.css" />
   </head>
   <body>
-    <div id="player-modal" class="modal">
+    <!-- <div id="player-modal" class="modal">
       <div class="modal-content">
         <h2 class="name-h2">Введите ваше имя</h2>
         <input
@@ -28,7 +28,24 @@
           <button id="skip-name">Пропустить</button>
         </div>
       </div>
-    </div>
+    </div> -->
+    <form id="player-modal" class="modal">
+      <div class="modal-content">
+        <h2 class="name-h2">Введите ваше имя</h2>
+        <input
+          type="text"
+          id="player-name"
+          name="player_name"
+          placeholder="Игрок"
+          maxlength="12"
+          required
+        />
+        <div class="modal-buttons">
+          <button type="submit">Начать игру</button>
+          <button type="button" id="skip-name">Пропустить</button>
+        </div>
+      </div>
+    </form>
     <!-- Меню игры -->
     <div id="game-menu" class="menu hidden">
       <h1>Хусынка</h1>

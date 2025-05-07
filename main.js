@@ -18,19 +18,41 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!localStorage.getItem('gameCoins')) {
     localStorage.setItem('gameCoins', '500'); // Стартовый баланс
   }
-  document.getElementById("start-game").addEventListener("click", () => {
-    nameValue = document.getElementById("player-name").value;
+
+  const form = document.getElementById('player-modal');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    nameValue = document.getElementById('player-name').value || 'Игрок';
     name.modal.classList.add("hidden");
-    console.log("nameValue:", nameValue);
     game.originalText = `Игра началась, ${nameValue}'!`;
     menu.showMainMenu();
+    // localStorage.setItem('playerName', name);
+    // closeModal();
   });
-  document.getElementById("skip-name").addEventListener("click", () => {
-    nameValue = "";
+  
+  // Обработка "Пропустить"
+  document.getElementById('skip-name').addEventListener('click', () => {
     name.modal.classList.add("hidden");
     game.originalText = 'Игра началась!';
     menu.showMainMenu();
+    // localStorage.setItem('playerName', 'Игрок');
+    // closeModal();
   });
+
+  // document.getElementById("start-game").addEventListener("click", () => {
+  //   nameValue = document.getElementById("player-name").value;
+  //   name.modal.classList.add("hidden");
+  //   console.log("nameValue:", nameValue);
+  //   game.originalText = `Игра началась, ${nameValue}'!`;
+  //   menu.showMainMenu();
+  // });
+  // document.getElementById("skip-name").addEventListener("click", () => {
+  //   nameValue = "";
+  //   name.modal.classList.add("hidden");
+  //   game.originalText = 'Игра началась!';
+  //   menu.showMainMenu();
+  // });
+  
   document
   .getElementById("new-game")
   .addEventListener("click", () => game.init());

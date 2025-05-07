@@ -50,6 +50,10 @@ body {
     );
 }
 
+html, body {
+  position: fixed; /* Предотвращает нежелательную прокрутку */
+}
+
 .info-container {
   margin-top: 30px;
 }

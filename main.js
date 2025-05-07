@@ -61,7 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
   .addEventListener("click", () => game.showHint());
   // После закрытия клавиатуры
 window.addEventListener('focusout', () => {
+  
   setTimeout(() => {
+    console.log('setTimeout');
     window.scrollTo(0, 0);
     document.activeElement.blur();
   }, 100);

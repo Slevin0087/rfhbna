@@ -49,6 +49,7 @@ export class Game {
     this.setupEventListeners();
     this.messageEl.textContent = this.originalText;
     this.gameStart = true;
+    this.win = false;
   }
 
   clearGame() {

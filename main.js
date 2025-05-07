@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     nameValue = document.getElementById('player-name').value || 'Игрок';
     name.modal.classList.add("hidden");
-    game.originalText = `Игра началась, ${nameValue}'!`;
+    game.originalText = `Игра началась, ${nameValue}!`;
     menu.showMainMenu();
     // localStorage.setItem('playerName', name);
     // closeModal();
@@ -52,11 +52,18 @@ document.addEventListener("DOMContentLoaded", () => {
   //   game.originalText = 'Игра началась!';
   //   menu.showMainMenu();
   // });
-  
+
   document
   .getElementById("new-game")
   .addEventListener("click", () => game.init());
   document
   .getElementById("hint")
   .addEventListener("click", () => game.showHint());
+  // После закрытия клавиатуры
+window.addEventListener('focusout', () => {
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+    document.activeElement.blur();
+  }, 100);
+});
 });

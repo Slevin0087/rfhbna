@@ -47,10 +47,12 @@ export class Game {
     this.setupGame();
     this.renderGame();
     this.setupEventListeners();
+    this.updateUI();
+  }
+
+  updateUI() {
     this.messageEl.textContent = this.originalText;
     this.messageEl.style.color = 'black'
-    this.gameStart = true;
-    this.win = false;
   }
 
   clearGame() {
@@ -71,6 +73,8 @@ export class Game {
   }
 
   setupGame() {
+    this.gameStart = true;
+    this.win = false;
     this.poinsGame = 0;
     this.deck.shuffle();
     // Раздаем карты в tableau

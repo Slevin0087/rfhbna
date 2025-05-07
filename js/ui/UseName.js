@@ -3,8 +3,11 @@
 export class UseName {
   constructor() {
     this.modal = document.getElementById("player-modal");
-    this.value = "";
     this.menu = document.getElementById("game-menu");
+    this.settings = document.getElementById("settings");
+    this.shop = document.getElementById("shop");
+    this.gameInterface = document.getElementById("game-interface");
+    this.value = "";
     this.initEventListeners();
   }
   initEventListeners() {
@@ -23,12 +26,20 @@ export class UseName {
 //     this.hideAll();
 //   }
 
-//   hideAll() {
-//     this.menu.classList.add("hidden");
-//     this.settings.classList.add("hidden");
-//     this.shop.classList.add("hidden");
-//     this.gameInterface.classList.add("hidden");
-//   }
+showMainMenu() {
+  this.hideAll();
+  this.game.gameStart
+    ? (this.newGameBtn.textContent = "Продолжить")
+    : (this.newGameBtn.textContent = "Новая игра");
 
+  this.modal.classList.remove("hidden");
+}
+
+  hideAll() {
+    this.menu.classList.add("hidden");
+    this.settings.classList.add("hidden");
+    this.shop.classList.add("hidden");
+    this.gameInterface.classList.add("hidden");
+  }
 
 }

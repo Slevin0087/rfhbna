@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const menu = new Menu(game);
   const shop = new Shop();
   // name.showUseName();
-  menu.hideAll();
+  name.hideAll();
   
   // game.init();
   if (!localStorage.getItem('gameCoins')) {
@@ -20,15 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   document.getElementById("start-game").addEventListener("click", () => {
     nameValue = document.getElementById("player-name").value;
-    name.modal.style.display = "none";
+    name.modal.classList.add("hidden");
     console.log("nameValue:", nameValue);
-    // document.getElementById('message').textContent = 'Игра началась, ' + nameValue + '!';
     game.originalText = `Игра началась, ${nameValue}'!`;
     menu.showMainMenu();
   });
   document.getElementById("skip-name").addEventListener("click", () => {
     nameValue = "";
-    name.modal.style.display = "none";
+    name.modal.classList.add("hidden");
     game.originalText = 'Игра началась!';
     menu.showMainMenu();
   });

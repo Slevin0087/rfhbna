@@ -22,11 +22,7 @@ export class UseName {
     });
   }
 
-//   showUseName() {
-//     this.hideAll();
-//   }
-
-showMainMenu() {
+showUseName() {
   this.hideAll();
   this.game.gameStart
     ? (this.newGameBtn.textContent = "Продолжить")

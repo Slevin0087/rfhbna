@@ -48,6 +48,7 @@ export class Game {
     this.renderGame();
     this.setupEventListeners();
     this.messageEl.textContent = this.originalText;
+    this.messageEl.style.color = 'black'
     this.gameStart = true;
     this.win = false;
   }
@@ -254,6 +255,7 @@ export class Game {
           this.win = true;
           this.audio.play("win");
           this.messageEl.textContent = Config.originalWinText;
+          this.messageEl.style.color = "yellow";
           this.incrementPoints(Config.pointsForWin);
         }
 

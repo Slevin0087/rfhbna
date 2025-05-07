@@ -1,8 +1,8 @@
-import { Game } from "./Game.js";
-import { Menu } from "./ui/Menu.js";
-import { UseName } from "./ui/UseName.js";
-import { Shop } from "./ui/Shop.js";
-import { AudioManager } from './ui/Audio.js';
+import { Game } from "./js/Game.js";
+import { Menu } from "./js/ui/Menu.js";
+import { UseName } from "./js/ui/UseName.js";
+import { Shop } from "./js/ui/Shop.js";
+import { AudioManager } from './js/ui/Audio.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   let nameValue = '';

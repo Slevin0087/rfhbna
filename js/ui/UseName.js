@@ -8,19 +8,19 @@ export class UseName {
     this.shop = document.getElementById("shop");
     this.gameInterface = document.getElementById("game-interface");
     this.value = "";
-    this.initEventListeners();
+    // this.initEventListeners();
   }
-  initEventListeners() {
-    document.getElementById("start-game").addEventListener("click", () => {
-      this.value = document.getElementById("player-name").value;
-      this.modal.style.display = "none";
-      console.log("this.value:", this.value);
-    });
-    document.getElementById("skip-name").addEventListener("click", () => {
-      this.value = "";
-      this.modal.style.display = "none";
-    });
-  }
+  // initEventListeners() {
+  //   document.getElementById("start-game").addEventListener("click", () => {
+  //     this.value = document.getElementById("player-name").value;
+  //     this.modal.style.display = "none";
+  //     console.log("this.value:", this.value);
+  //   });
+  //   document.getElementById("skip-name").addEventListener("click", () => {
+  //     this.value = "";
+  //     this.modal.style.display = "none";
+  //   });
+  // }
 
 showUseName() {
   this.hideAll();

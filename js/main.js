@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     name.modal.style.display = "none";
     console.log("nameValue:", nameValue);
     // document.getElementById('message').textContent = 'Игра началась, ' + nameValue + '!';
-    game.originalText = 'Игра началась, ' + nameValue + '!';
+    game.originalText = `Игра началась, ${nameValue}'!`;
     menu.showMainMenu();
   });
   document.getElementById("skip-name").addEventListener("click", () => {

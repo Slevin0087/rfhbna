@@ -5,6 +5,7 @@ export class Menu {
   constructor(game) {
     this.game = game;
     this.menu = document.getElementById("game-menu");
+    this.newGameBtn = document.getElementById("new-game-btn");
     this.settings = document.getElementById("settings");
     this.shop = document.getElementById("shop");
     this.gameInterface = document.getElementById("game-interface");
@@ -35,9 +36,10 @@ export class Menu {
       this.faceContainer.style.display = "none";
       this.shirtContainer.style.display = "none";
     });
-    document.getElementById("new-game-btn").addEventListener("click", () => {
+    this.newGameBtn.addEventListener("click", () => {
       this.hideAll();
       this.gameInterface.classList.remove("hidden");
+      if (this.game.gameStart) return;
       this.game.init();
     });
 
@@ -64,6 +66,11 @@ export class Menu {
 
   showMainMenu() {
     this.hideAll();
+    console.log("this.menu:", this.menu);
+    this.game.gameStart
+      ? (this.newGameBtn.textContent = "Продолжить")
+      : (this.newGameBtn.textContent = "Новая игра");
+
     this.menu.classList.remove("hidden");
   }
 

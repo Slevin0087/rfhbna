@@ -8,6 +8,7 @@ import { Config } from "./ConfigGame.js";
 
 export class Game {
   constructor() {
+    this.gameStart = false;
     // Инициализация с учётом настроек
     this.win = false;
     this.moveStockForFoundation = false;
@@ -47,6 +48,7 @@ export class Game {
     this.renderGame();
     this.setupEventListeners();
     this.messageEl.textContent = this.originalText;
+    this.gameStart = true;
   }
 
   clearGame() {

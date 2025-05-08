@@ -94,7 +94,6 @@ export class Game {
 
     this.stock.addCards(stockCards);
     this.pointsElement.textContent = `Заработано Очков: ${this.poinsGame}`;
-    console.log("this.tableaus[1]:", this.tableaus[1]);
   }
 
   renderGame() {
@@ -178,10 +177,12 @@ export class Game {
     cardElement.append(spanElementLeft, spanElementCenter, spanElementRight);
     // card.getSymbol();
     const cStyle = window.getComputedStyle(container);
-    const cStyleBorderRadius = parseInt(cStyle.borderRadius);
+    const cStyleBorder = parseInt(cStyle.border);
+    console.log('cStyleBorder:', cStyleBorder);
+    
     cardElement.style.borderRadius = cStyle.borderRadius;
     cardElement.style.position = "absolute";
-    cardElement.style.left = -cStyleBorderRadius / 2 + "px";
+    cardElement.style.left = -cStyleBorder + "px";
     cardElement.dataset.suit = card.suit;
     cardElement.dataset.value = card.value;
     cardElement.dataset.color = card.color;
@@ -189,9 +190,9 @@ export class Game {
     if (containerId.startsWith("tableau-")) {
       const wH = document.documentElement.clientHeight;
       const topPx = wH <= 540 ? 11 : 25;
-      cardElement.style.top = offset * topPx - cStyleBorderRadius / 2 + "px";
+      cardElement.style.top = offset * topPx - cStyleBorder + "px";
     } else {
-      cardElement.style.top = -cStyleBorderRadius / 2 + "px";
+      cardElement.style.top = -cStyleBorder + "px";
     }
     if (!card.faceUp) {
       cardElement.classList.add("card-back");

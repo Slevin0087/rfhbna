@@ -364,7 +364,7 @@ button:active {
   }
 
   .center {
-    font-size: 45px;
+    font-size: 40px;
   }
 
   .row-a,
@@ -398,13 +398,8 @@ button:active {
     width: var(--card-width-390px);
     height: var(--card-height-390px);
   }
-  /* 
-  .bottom-right {
-    display: none;
-  } */
 
   .center {
-    /* margin: 40px 0px 40px; */
     font-size: 45px;
   }
 
@@ -443,6 +438,14 @@ button:active {
   .center {
     /* margin: 40px 0px 40px; */
     font-size: 48px;
+  }
+
+  .bottom-right {
+    box-sizing: border-box;
+    display: block;
+    text-align: right;
+    padding-right: 5%;
+    padding-bottom: 3%;
   }
 
   .row-a,
@@ -504,14 +507,6 @@ button:active {
 
   .center {
     font-size: 90px;
-  }
-
-  .bottom-right {
-    box-sizing: border-box;
-    display: block;
-    text-align: right;
-    padding-right: 5%;
-    padding-bottom: 3%;
   }
 
   .row-a,

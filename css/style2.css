@@ -352,6 +352,7 @@ button:active {
     #165016 5px,
     #165016 10px
   );
+  color: transparent !important;
 }
 
   #controls {
@@ -512,6 +513,18 @@ button:active {
     border-radius: 10px;
     box-sizing: border-box;
   }
+
+  .card-back,
+.stock {
+  background: repeating-linear-gradient(
+    45deg,
+    #1a5a1a,
+    #1a5a1a 10px,
+    #165016 10px,
+    #165016 20px
+  );
+  color: transparent !important;
+}
 
   .card-placeholder,
   .foundation {

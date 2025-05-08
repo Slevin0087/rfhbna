@@ -199,6 +199,14 @@ input {
   font-size: 30.5px;
 }
 
+.bottom-right {
+  box-sizing: border-box;
+  display: block;
+  text-align: right;
+  padding-right: 5%;
+  padding-bottom: 3%;
+}
+
 /* .bottom-right {
   box-sizing: border-box;
   display: block;
@@ -207,10 +215,6 @@ input {
   padding-bottom: 3%; */
 /* margin-top: 11%; */
 /* } */
-
-.bottom-right {
-  display: none;
-}
 
 .card.red {
   color: red;
@@ -359,12 +363,8 @@ button:active {
     margin-top: 45vh;
   }
 
-  .bottom-right {
-    display: none;
-  }
-
   .center {
-    font-size: 40px;
+    font-size: 22px;
   }
 
   .row-a,
@@ -400,7 +400,7 @@ button:active {
   }
 
   .center {
-    font-size: 45px;
+    font-size: 30px;
   }
 
   .row-a,
@@ -438,14 +438,6 @@ button:active {
   .center {
     /* margin: 40px 0px 40px; */
     font-size: 48px;
-  }
-
-  .bottom-right {
-    box-sizing: border-box;
-    display: block;
-    text-align: right;
-    padding-right: 5%;
-    padding-bottom: 3%;
   }
 
   .row-a,
@@ -550,14 +542,6 @@ button:active {
     font-size: 85px;
   }
 
-  .bottom-right {
-    box-sizing: border-box;
-    display: block;
-    text-align: right;
-    padding-right: 5%;
-    padding-bottom: 3%;
-  }
-
   .row-a,
   .row-b {
     gap: var(--card-gap-1200px);
@@ -603,14 +587,6 @@ button:active {
   .center {
     /* margin: 40px 0px 40px; */
     font-size: 120px;
-  }
-
-  .bottom-right {
-    box-sizing: border-box;
-    display: block;
-    text-align: right;
-    padding-right: 5%;
-    padding-bottom: 3%;
   }
 
   .row-a,
@@ -664,18 +640,6 @@ button:active {
   .center {
     /* margin: 40px 0px 40px; */
     font-size: 120px;
-  }
-
-  .bottom-right {
-    box-sizing: border-box;
-    display: block;
-    text-align: right;
-    padding-right: 5%;
-    padding-bottom: 3%;
-  }
-
-  .bottom-right {
-    display: block;
   }
 
   .row-a,

@@ -17,6 +17,8 @@
   --stock-borderRadius-350px: 5px;
   --stock-borderRadius-900px: 10px;
   --stock-borderRadius-1600px: 10px;
+  --minHeight-messageContainer-350px: 50px;
+  --minHeight-messageContainer-1600px: 20px;
 }
 
 html {
@@ -38,7 +40,7 @@ body {
   overflow: hidden;
   /* justify-content: center; */
   /* align-items: center; */
-  background: url('../assets/shop/fons/fon_4.jpg') no-repeat center center fixed;
+  background: url("../assets/shop/fons/fon_4.jpg") no-repeat center center fixed;
   /* background-color: #333;
   background-image: repeating-linear-gradient(
     0deg,
@@ -88,16 +90,10 @@ input {
   justify-content: center;
 }
 
-#message {
-  text-align: center;
-  padding: 10px;
-  margin: 10px;
-  color: black;
-}
-
+#message,
 .points-game {
+  font-size: 20px;
   text-align: center;
-  /* align-items: center; */
   padding: 10px;
   margin: 10px;
   color: black;
@@ -315,10 +311,18 @@ button:active {
 @media (min-width: 350px) {
   .points-game,
   #message {
-    font-size: 12px;
     padding: 5px;
-    margin: 5px;
+    margin: 2px;
   }
+
+  #message {
+    min-height: var(--minHeight-messageContainer-350px);
+  }
+
+  .info-container {
+    margin-top: 5px;
+  }
+
   .row-1,
   .row-2 {
     margin: 10px 0px 30px;
@@ -375,12 +379,6 @@ button:active {
 }
 
 @media (min-width: 450px) {
-  .points-game,
-  #message {
-    font-size: 12px;
-    padding: 5px;
-    margin: 5px;
-  }
   .row-1,
   .row-2 {
     margin: 10px 0px 30px;
@@ -422,11 +420,6 @@ button:active {
 }
 
 @media (min-width: 600px) {
-  .points-game,
-  #message {
-    font-size: 16px;
-  }
-
   .row-1,
   .row-2 {
     margin: 10px 0px 30px;
@@ -464,9 +457,8 @@ button:active {
 }
 
 @media (min-width: 900px) {
-  .points-game,
   #message {
-    font-size: 18px;
+    min-height: var(--minHeight-messageContainer-1600px);
   }
   .row-1,
   .row-2 {
@@ -535,18 +527,7 @@ button:active {
 
 @media (min-width: 1200px) {
   .info-container {
-    /* display: flex; */
-    /* justify-content: center; */
     margin-top: 10px;
-  }
-  .points-game,
-  #message {
-    font-size: 20px;
-  }
-
-  .row-1,
-  .row-2 {
-    margin: 10px 0px 30px;
   }
 
   .row-2 {
@@ -555,6 +536,7 @@ button:active {
 
   .row-1 {
     gap: calc(var(--card-width-1200px) + var(--card-gap-1200px) * 2);
+    margin-bottom: 10px;
   }
 
   .stock,
@@ -564,7 +546,6 @@ button:active {
     min-width: var(--card-width-1200px);
     min-height: var(--card-height-1200px);
     border-radius: var(--stock-borderRadius-900px);
-
   }
 
   .card {
@@ -594,17 +575,6 @@ button:active {
 }
 
 @media (min-width: 1600px) {
-  /* .info-container {
-    display: flex;
-    justify-content: center;
-  } */
-
-  .points-game,
-  #message {
-    margin: 0;
-    font-size: 20px;
-  }
-
   #game-container {
     margin-top: 5px;
     min-height: 80vh;
@@ -660,11 +630,9 @@ button:active {
 }
 
 @media (min-width: 1900px) {
-  /* .info-container {
-    display: flex;
-    justify-content: center;
-    margin: 5px 0;
-  } */
+  .info-container {
+    margin-bottom: 15px;
+  }
 
   #game-container {
     margin-top: 5px;

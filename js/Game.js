@@ -52,7 +52,7 @@ export class Game {
 
   updateUI() {
     this.messageEl.textContent = this.originalText;
-    this.messageEl.style.color = 'black'
+    this.messageEl.style.color = "black";
   }
 
   clearGame() {
@@ -178,8 +178,8 @@ export class Game {
     // card.getSymbol();
     const cStyle = window.getComputedStyle(container);
     const cStyleBorder = parseInt(cStyle.border);
-    console.log('cStyleBorder:', cStyleBorder);
-    
+    console.log("cStyleBorder:", cStyleBorder);
+
     cardElement.style.borderRadius = cStyle.borderRadius;
     cardElement.style.position = "absolute";
     cardElement.style.left = -cStyleBorder + "px";
@@ -540,9 +540,9 @@ export class Game {
         if (this.foundations[i].canAccept(wasteCard)) {
           this.highlightCard(wasteCard);
           this.highlightFoundation(i);
-          this.messageEl.textContent =
-            "Можно переместить карту из стока в foundation";
-            this.messageEl.style.color = "yellow";
+          // this.messageEl.style.fontSize = "18px";
+          this.messageEl.textContent = "Можно переместить карту из стока в foundation";
+          this.messageEl.style.color = "yellow";
           this.setHintTimeout();
           return;
         }
@@ -553,6 +553,7 @@ export class Game {
         if (this.tableaus[i].canAccept(wasteCard)) {
           this.highlightCard(wasteCard);
           this.highlightTableau(i);
+          // this.messageEl.style.fontSize = "18px";
           this.messageEl.textContent = `Можно переместить карту из стока в столбец ${
             i + 1
           }`;
@@ -574,6 +575,7 @@ export class Game {
           if (this.foundations[j].canAccept(topCard)) {
             this.highlightCard(topCard);
             this.highlightFoundation(j);
+            // this.messageEl.style.fontSize = "18px";
             this.messageEl.textContent = `Можно переместить карту из столбца ${
               i + 1
             } в foundation`;
@@ -588,6 +590,7 @@ export class Game {
           if (i !== j && this.tableaus[j].canAccept(topCard)) {
             this.highlightCard(topCard);
             this.highlightTableau(j);
+            // this.messageEl.style.fontSize = "18px";
             this.messageEl.textContent = `Можно переместить карту из столбца ${
               i + 1
             } в столбец ${j + 1}`;
@@ -610,6 +613,7 @@ export class Game {
           if (this.tableaus[j].canAccept(topCard)) {
             this.highlightCard(topCard);
             this.highlightTableau(j);
+            // this.messageEl.style.fontSize = "18px";
             this.messageEl.textContent = `Можно переместить карту из foundation в столбец ${
               j + 1
             }`;
@@ -621,8 +625,9 @@ export class Game {
       }
     }
 
+    // this.messageEl.style.fontSize = "18px";
     this.messageEl.textContent =
-      "Подсказка: нет доступных ходов, попробуйте раздать карты из стока";
+      "Нет доступных ходов, попробуйте раздать карты из стока";
     this.messageEl.style.color = "red";
     this.setHintTimeout();
   }
@@ -685,6 +690,7 @@ export class Game {
   setHintTimeout() {
     this.hintTimeout = setTimeout(() => {
       this.clearHint();
+      this.messageEl.style.fontSize = "20px";
       this.messageEl.textContent = this.originalText;
       this.messageEl.style.color = "black";
     }, 3000);

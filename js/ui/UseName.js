@@ -1,5 +1,3 @@
-
-
 export class UseName {
   constructor() {
     this.modal = document.getElementById("player-modal");

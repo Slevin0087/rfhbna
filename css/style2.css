@@ -140,7 +140,6 @@ input {
 }
 
 .controls-btn {
-  font-size: 20px;
   color: black;
 }
 
@@ -247,11 +246,11 @@ input {
 
 button {
   padding: 6px 8px;
-  /* font-size: 1rem; */
+  font-size: 20px;
   cursor: pointer;
   background-color: #4caf50;
   color: white;
-  border: none;
+  border: 1px solid black;
   border-radius: 4px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s;

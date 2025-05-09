@@ -147,12 +147,13 @@ export class Game {
     });
   }
 
-  renderCardsForWaste() {
+  renderCardsForWaste() {    
     const wasteCard = this.stock.getCurrentCard();
+    console.log('wasteCard:', wasteCard);
     if (wasteCard) {
       wasteCard.wasteCard = true;
       this.renderCard(wasteCard, "waste", 0);
-    }
+    }    
   }
 
   renderCard(card, containerId, offset) {
@@ -186,7 +187,6 @@ export class Game {
     cardElement.dataset.suit = card.suit;
     cardElement.dataset.value = card.value;
     cardElement.dataset.color = card.color;
-
     if (containerId.startsWith("tableau-")) {
       const wH = document.documentElement.clientHeight;
       const topPx = wH <= 540 ? 11 : 25;
@@ -429,8 +429,6 @@ export class Game {
   }
 
   moveCardToFoundation(card, indexToFoundation) {
-    console.log('идёт в foundation');
-    
     this.removeCardFromCurrentPosition(card, indexToFoundation, "foundation");
     this.renderCards();
   }
@@ -706,11 +704,15 @@ export class Game {
   }
 
   setupEventListeners() {
-    this.stock.element.addEventListener("click", () => {
+    this.stock.element.addEventListener("click", () => {      
       this.audio.play("cardFlip");
       this.stock.deal();
-      console.log("событие");
-
+      if (this.stock.index ===  this.stock.cards.length) {        
+        this.stock.element.classList.replace('stock', 'card-placeholder');
+      }
+      else {
+        this.stock.element.classList.replace('card-placeholder', 'stock');
+      }
       this.renderCards();
     });
 

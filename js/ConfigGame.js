@@ -5,7 +5,7 @@ export const Config = {
   originalHintText: `Нужно минимум 5 очков!`,
   pointsForFoundation: 5,
   pointsForTableaue: 2,
-  pointsFromFoundationToTableaue: 3,
+  pointsFromFoundationToTableaue: 5,
   pointsForHint: 5,
   pointsForWin: 50,
   pointsForCardFlip: 5,

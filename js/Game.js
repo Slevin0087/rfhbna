@@ -274,8 +274,10 @@ export class Game {
     for (let i = 0; i < this.tableaus.length; i++) {
       console.log("Проверяем Tableau");
       if (this.tableaus[i].canAccept(card)) {
-        this.moveCardToTableau(card, i);
+        card.parent === 'foundation' ?
+        this.decrementPoints(Config.pointsFromFoundationToTableaue) :
         this.incrementPoints(Config.pointsForTableaue);
+        this.moveCardToTableau(card, i);
         return;
       }
     }
@@ -506,7 +508,6 @@ export class Game {
         card.parentElement.removeChild(card.cardEl);
         this.tableaus[indexToContainer].addCard(card);
         this.tableaus[indexToContainer].element.appendChild(card.cardEl);
-        this.decrementPoints(Config.pointsFromFoundationToTableaue);
         return;
       }
     }

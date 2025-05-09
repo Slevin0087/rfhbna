@@ -244,6 +244,8 @@ export class Game {
   // }
 
   handleCardClick(card) {
+    console.log('card:', card);
+    
     this.audio.play("click");
     // 1. Проверяем Foundation
     for (let i = 0; i < this.foundations.length; i++) {
@@ -425,6 +427,8 @@ export class Game {
   }
 
   moveCardToFoundation(card, indexToFoundation) {
+    console.log('идёт в foundation');
+    
     this.removeCardFromCurrentPosition(card, indexToFoundation, "foundation");
     this.renderCards();
   }

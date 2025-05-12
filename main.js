@@ -22,12 +22,12 @@ document.addEventListener("DOMContentLoaded", () => {
       document.documentElement.requestFullscreen().catch((err) => {
         console.error(`Ошибка при переходе в полноэкранный режим: ${err}`);
       });
-      if (fullScreenBtn.textContent === 'Полный экран') fullScreenBtn.textContent = 'Оконный режим';
+      if (fullScreenBtn.textContent === '+') fullScreenBtn.textContent = '-';
     } else {
       // Выход из полноэкранного режима
       if (document.exitFullscreen) {
         document.exitFullscreen();
-        if (fullScreenBtn.textContent === 'Оконный режим') fullScreenBtn.textContent = 'Полный экран';
+        if (fullScreenBtn.textContent === '-') fullScreenBtn.textContent = '+';
       }
     }
   }

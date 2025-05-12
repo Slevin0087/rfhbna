@@ -22,12 +22,12 @@ document.addEventListener("DOMContentLoaded", () => {
       document.documentElement.requestFullscreen().catch((err) => {
         console.error(`Ошибка при переходе в полноэкранный режим: ${err}`);
       });
-      if (fullScreenBtn.textContent === '+') fullScreenBtn.textContent = '-';
+      if (fullScreenBtn.textContent === "+") fullScreenBtn.textContent = "-";
     } else {
       // Выход из полноэкранного режима
       if (document.exitFullscreen) {
         document.exitFullscreen();
-        if (fullScreenBtn.textContent === '-') fullScreenBtn.textContent = '+';
+        if (fullScreenBtn.textContent === "-") fullScreenBtn.textContent = "+";
       }
     }
   }
@@ -84,4 +84,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("hint")
     .addEventListener("click", () => game.showHint());
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("sw.js")
+        .then(() => console.log("SW зарегистрирован"))
+        .catch((err) => console.error("Ошибка SW:", err));
+    });
+  }
 });

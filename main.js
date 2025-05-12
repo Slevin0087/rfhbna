@@ -2,38 +2,58 @@ import { Game } from "./js/Game.js";
 import { Menu } from "./js/ui/Menu.js";
 import { UseName } from "./js/ui/UseName.js";
 import { Shop } from "./js/ui/Shop.js";
-import { AudioManager } from './js/ui/Audio.js';
+import { AudioManager } from "./js/ui/Audio.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  let nameValue = '';
+  let nameValue = "";
   const audio = new AudioManager();
   const game = new Game();
   const name = new UseName();
   const menu = new Menu(game);
   const shop = new Shop();
   // name.showUseName();
-  name.hideAll();
-  
-  // game.init();
-  if (!localStorage.getItem('gameCoins')) {
-    localStorage.setItem('gameCoins', '500'); // Стартовый баланс
+
+  function toggleFullscreen() {
+    console.log("заход в функцию, полный экран");
+    const fullScreenBtn = document.getElementById("full-screen-btn");
+
+    if (!document.fullscreenElement) {
+      // Запуск полноэкранного режима
+      document.documentElement.requestFullscreen().catch((err) => {
+        console.error(`Ошибка при переходе в полноэкранный режим: ${err}`);
+      });
+      if (fullScreenBtn.textContent === 'Полный экран') fullScreenBtn.textContent = 'Оконный режим';
+    } else {
+      // Выход из полноэкранного режима
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+        if (fullScreenBtn.textContent === 'Оконный режим') fullScreenBtn.textContent = 'Полный экран';
+      }
+    }
   }
 
-  const form = document.getElementById('player-modal');
-  form.addEventListener('submit', (e) => {
+  name.hideAll();
+
+  // game.init();
+  if (!localStorage.getItem("gameCoins")) {
+    localStorage.setItem("gameCoins", "500"); // Стартовый баланс
+  }
+
+  const form = document.getElementById("player-modal");
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
-    nameValue = document.getElementById('player-name').value || 'Игрок';
+    nameValue = document.getElementById("player-name").value || "Игрок";
     name.modal.classList.add("hidden");
     game.originalText = `Игра началась, ${nameValue}!`;
     menu.showMainMenu();
     // localStorage.setItem('playerName', name);
     // closeModal();
   });
-  
+
   // Обработка "Пропустить"
-  document.getElementById('skip-name').addEventListener('click', () => {
+  document.getElementById("skip-name").addEventListener("click", () => {
     name.modal.classList.add("hidden");
-    game.originalText = 'Игра началась!';
+    game.originalText = "Игра началась!";
     menu.showMainMenu();
     // localStorage.setItem('playerName', 'Игрок');
     // closeModal();
@@ -54,9 +74,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // });
 
   document
-  .getElementById("new-game")
-  .addEventListener("click", () => game.init());
+    .getElementById("full-screen-btn")
+    .addEventListener("click", () => toggleFullscreen());
+
   document
-  .getElementById("hint")
-  .addEventListener("click", () => game.showHint());
+    .getElementById("new-game")
+    .addEventListener("click", () => game.init());
+
+  document
+    .getElementById("hint")
+    .addEventListener("click", () => game.showHint());
 });
